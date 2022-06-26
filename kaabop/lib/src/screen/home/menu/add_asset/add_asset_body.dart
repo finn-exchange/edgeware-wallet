@@ -1,7 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 import 'package:wallet_apps/src/components/reuse_dropdown.dart';
-
 import 'package:wallet_apps/src/screen/home/menu/add_asset/search_asset.dart';
 
 class AddAssetBody extends StatelessWidget {

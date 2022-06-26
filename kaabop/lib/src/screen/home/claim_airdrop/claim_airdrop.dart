@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:gsheets/gsheets.dart';
 import 'package:provider/provider.dart';
-import 'package:wallet_apps/src/components/component.dart';
 import 'package:wallet_apps/src/components/network_sensitive.dart';
 
 import '../../../../index.dart';

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wallet_apps/theme/color.dart';
 import '../../../../index.dart';
 
 class AccountC {

@@ -1,6 +1,5 @@
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
-import 'package:wallet_apps/src/provider/api_provider.dart';
 
 class ReceiveWallet extends StatefulWidget {
   //static const route = '/recievewallet';

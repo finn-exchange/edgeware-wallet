@@ -59,7 +59,7 @@ class MyBottomSheet {
                   Expanded(
                     child: MyBottomSheetItem(
                       icon: "icons/form.svg",
-                      subTitle: "Fill wallet",
+                      subTitle: "Wallet",
                       action: () {
                         TrxOptionMethod.navigateFillAddress(
                           context,
@@ -69,22 +69,7 @@ class MyBottomSheet {
                         );
                       },
                     ),
-                  ),
-                  Expanded(
-                    child: MyBottomSheetItem(
-                      icon: "icons/contact.svg",
-                      subTitle: "Invite friend",
-                      action: () async {
-                        // TrxOptionMethod.selectContact(
-                        //     context, portfolioList);
-                        await dialog(
-                          context,
-                          'Coming Soon!',
-                          'Invite friend',
-                        );
-                      },
-                    ),
-                  ),
+                  )
                 ],
               )
             ],
