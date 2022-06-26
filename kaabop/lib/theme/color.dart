@@ -8,9 +8,9 @@ class AppColors {
   static const String darkGrey = "#302f34";
 
   /* Background Color */
-  static const String bgdColor = "#FFFFFF";//"#090D28"; //AppConfig.bgdColor;
-  static const String whiteHexaColor = "#FFFFFF";//"#181C35";
-  static const String textColor = "#0F1112";//"#585D86";
+  static const String bgdColor = "#FFFFFF"; //"#090D28"; //AppConfig.bgdColor;
+  static const String whiteHexaColor = "#FFFFFF"; //"#181C35";
+  static const String textColor = "#0F1112"; //"#585D86";
   static const String textBtnColor = "#000000";
   static const String secondary = "#F39D0C"; // "#08B952";
   static const String secondarytext = "#F39D0C"; //"#40FF90";

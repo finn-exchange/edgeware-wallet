@@ -1,11 +1,4 @@
 import 'dart:ui';
-
-import 'package:flare_flutter/flare_controls.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:wallet_apps/src/components/dimissible_background.dart';
-import 'package:wallet_apps/src/models/tx_history.dart';
-
 import '../../../../index.dart';
 
 class AssetHistory extends StatelessWidget {

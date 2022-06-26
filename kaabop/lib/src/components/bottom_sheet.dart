@@ -12,21 +12,26 @@ class MyBottomSheet {
     WalletSDK sdk,
     Keyring keyring,
   }) {
-     final isDarkTheme = Provider.of<ThemeProvider>(context,listen: false).isDark;
+    final isDarkTheme =
+        Provider.of<ThemeProvider>(context, listen: false).isDark;
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
-            color: isDarkTheme ? hexaCodeToColor(AppColors.darkBgd) : hexaCodeToColor(AppColors.bgdColor),
+            color: isDarkTheme
+                ? hexaCodeToColor(AppColors.darkBgd)
+                : hexaCodeToColor(AppColors.bgdColor),
           ),
           height: 153,
           child: Column(
             children: [
               Align(
                 child: MyText(
-                  color: isDarkTheme ? AppColors.whiteColorHexa : AppColors.textColor,
+                  color: isDarkTheme
+                      ? AppColors.whiteColorHexa
+                      : AppColors.textColor,
                   top: 20,
                   bottom: 33,
                   text: "Transaction options",
@@ -102,7 +107,10 @@ class MyBottomSheet {
           ),
           content: Padding(
             padding: const EdgeInsets.only(top: 15.0, bottom: 15.0),
-            child: Text(text2, textAlign: TextAlign.center,),
+            child: Text(
+              text2,
+              textAlign: TextAlign.center,
+            ),
           ),
           actions: <Widget>[
             FlatButton(

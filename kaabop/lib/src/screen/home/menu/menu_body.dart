@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 
@@ -60,29 +58,6 @@ class MenuBody extends StatelessWidget {
         ),
 
         // Security
-        const MenuSubTitle(index: 2),
-        MyListTile(
-          index: 2,
-          subIndex: 0,
-          onTap: () {
-            Navigator.pushNamed(context, AppText.claimAirdropView);
-          },
-        ),
-        MyListTile(
-          index: 2,
-          subIndex: 3,
-          onTap: () {
-            Navigator.push(context, RouteAnimation(enterPage: Swap()));
-          },
-        ),
-        // MyListTile(
-        //   index: 2,
-        //   subIndex: 1,
-        //   onTap: () {
-        //     //Navigator.pushNamed(context, AppText.claimAirdropView);
-        //   },
-        // ),
-
         // Account
         const MenuSubTitle(index: 3),
 

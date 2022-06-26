@@ -73,7 +73,8 @@ class ContractProvider with ChangeNotifier {
 
   Future<void> initClient() async {
     _httpClient = Client();
-    _web3client = Web3Client(AppConfig.bscMainNet, _httpClient, socketConnector: () {
+    _web3client =
+        Web3Client(AppConfig.bscMainNet, _httpClient, socketConnector: () {
       return IOWebSocketChannel.connect(_wsBscUrl).cast<String>();
     });
   }
@@ -93,44 +94,39 @@ class ContractProvider with ChangeNotifier {
     await initClient();
 
     await _web3client
-      .addedBlocks()
-      .asyncMap((_) async {
-        try {
+        .addedBlocks()
+        .asyncMap((_) async {
+          try {
+            // This Method Will Run Again And Again Until we return something
+            await _web3client.getTransactionReceipt(txHash).then((d) {
+              print("getTransactionReceipt ${d.status}");
+              // Give Value To std When Request Successfully
+              if (d != null) {
+                print("Pending ${d.status}");
+                print("Get Transaction has ${d.from}");
+                std = d.status;
+              }
+            });
 
-          // This Method Will Run Again And Again Until we return something
-          await _web3client.getTransactionReceipt(txHash).then((d) {
-            print("getTransactionReceipt ${d.status}");
-            // Give Value To std When Request Successfully
-            if (d != null){
-            print("Pending ${d.status}");
-            print("Get Transaction has ${d.from}");
-              std = d.status;
+            // Return Value For True Value And Method GetTrxReceipt Also Terminate
+            if (std != null) return std;
+          } on FormatException catch (e) {
+            // This Error Because can't Convert Hexadecimal number to integer.
+            // Note: Transaction is 100% successfully And It's just error becuase of Failure Parse that hexa
+            // Example-Error: 0xc, 0x3a, ...
+            // Example-Success: 0x1, 0x2, 0,3 ...
+
+            // return True For Facing This FormatException
+            if (e.message.toString() == 'Invalid radix-10 number') {
+              std = true;
+              return std;
             }
-          });
-          
-          // Return Value For True Value And Method GetTrxReceipt Also Terminate
-          if (std != null) return std;
-
-        } on FormatException catch (e){
-          
-          // This Error Because can't Convert Hexadecimal number to integer.
-          // Note: Transaction is 100% successfully And It's just error becuase of Failure Parse that hexa
-          // Example-Error: 0xc, 0x3a, ...
-          // Example-Success: 0x1, 0x2, 0,3 ...
-
-          // return True For Facing This FormatException
-          if (e.message.toString() == 'Invalid radix-10 number'){
-            std = true;
-            return std;
+          } catch (e) {
+            print("Error $e");
           }
-
-        }
-        catch (e){
-          print("Error $e");
-        }
-      })
-      .where((receipt) => receipt != null)
-      .first;
+        })
+        .where((receipt) => receipt != null)
+        .first;
 
     return std;
   }
@@ -260,9 +256,8 @@ class ContractProvider with ChangeNotifier {
   }
 
   Future<String> swap(String amount, String privateKey) async {
-
     await initClient();
-    
+
     final contract = await initSwapSel(AppConfig.swapMainnetAddr);
 
     final ethAddr = await StorageServices().readSecure('etherAdd');
@@ -276,7 +271,8 @@ class ContractProvider with ChangeNotifier {
     final maxGas = await _web3client.estimateGas(
       sender: EthereumAddress.fromHex(ethAddr),
       to: contract.address,
-      data: ethFunction.encodeCall([BigInt.from(double.parse(amount) * pow(10, 18))]),
+      data: ethFunction
+          .encodeCall([BigInt.from(double.parse(amount) * pow(10, 18))]),
     );
 
     final swap = await _web3client.sendTransaction(
@@ -378,9 +374,11 @@ class ContractProvider with ChangeNotifier {
       final res = await query(
           AppConfig.kgoAddr, 'balanceOf', [EthereumAddress.fromHex(ethAdd)]);
 
+      String chainDecimal =
+          kgoNative.chainDecimal != null ? kgoNative.chainDecimal : "0";
       kgoNative.balance = Fmt.bigIntToDouble(
         res[0] as BigInt,
-        int.parse(kgoNative.chainDecimal),
+        int.parse(chainDecimal),
       ).toString();
     }
 

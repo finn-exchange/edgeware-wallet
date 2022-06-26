@@ -491,7 +491,7 @@ class _AssetInfoState extends State<AssetInfo> {
                                             focusColor: hexaCodeToColor(
                                                 AppColors.secondary),
                                             child: const MyText(
-                                                text: 'Transfer',
+                                                text: 'Send',
                                                 color: AppColors.whiteColorHexa),
                                           ),
                                         ),
@@ -517,7 +517,7 @@ class _AssetInfoState extends State<AssetInfo> {
                                               AppColors.secondary,
                                             ),
                                             child: const MyText(
-                                              text: 'Recieved',
+                                              text: 'Recieve',
                                               color: AppColors.whiteColorHexa,
                                             ),
                                           ),

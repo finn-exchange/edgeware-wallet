@@ -1,9 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
-
 import 'package:pie_chart/pie_chart.dart';
-import 'package:wallet_apps/src/components/portfolio_c.dart';
-import 'package:wallet_apps/src/provider/wallet_provider.dart';
 
 class PortfolioBody extends StatelessWidget {
   final List<dynamic> listData;
@@ -117,20 +114,20 @@ class PortfolioBody extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                         const MyText(bottom: 16, text: "Wallet"),
-                        //  const MyPercentText(
-                        //     value: "+10.5",
-                        //   ),
-                        //   LinearPercentIndicator(
-                        //     alignment: MainAxisAlignment.center,
-                        //     width: 100.0,
-                        //     percent: 0.5,
-                        //     backgroundColor:
-                        //         hexaCodeToColor(AppColors.cardColor),
-                        //     progressColor:
-                        //         hexaCodeToColor(AppColors.secondarytext),
-                        //     animation: true,
-                        //   )
+                          const MyText(bottom: 16, text: "Wallet"),
+                          //  const MyPercentText(
+                          //     value: "+10.5",
+                          //   ),
+                          //   LinearPercentIndicator(
+                          //     alignment: MainAxisAlignment.center,
+                          //     width: 100.0,
+                          //     percent: 0.5,
+                          //     backgroundColor:
+                          //         hexaCodeToColor(AppColors.cardColor),
+                          //     progressColor:
+                          //         hexaCodeToColor(AppColors.secondarytext),
+                          //     animation: true,
+                          //   )
                         ],
                       ),
                     ),
@@ -167,7 +164,7 @@ class PortfolioBody extends StatelessWidget {
                   minHeight: 100,
                   maxHeight: 500,
                 ),
-               // child: MyColumnBuilder(data: listData),
+                // child: MyColumnBuilder(data: listData),
               ),
             ],
           ),

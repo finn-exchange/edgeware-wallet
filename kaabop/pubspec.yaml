@@ -110,6 +110,7 @@ dependencies:
   circular_check_box: ^1.0.4
   flutter_launcher_icons: ^0.8.1
   timeline_tile:
+  flutter_secure_storage_web: ^1.0.2
 
 dev_dependencies:
   flutter_test:

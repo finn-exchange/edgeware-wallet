@@ -1,11 +1,8 @@
-import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 
 class WelcomeBody extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme = Provider.of<ThemeProvider>(context).isDark;
     return Column(
       children: [
         const SizedBox(
@@ -24,9 +21,7 @@ class WelcomeBody extends StatelessWidget {
                 child: MyText(
                   text: AppText.welcome,
                   fontSize: 22,
-                  color: isDarkTheme
-                      ? AppColors.whiteColorHexa
-                      : AppColors.textColor,
+                  color: AppColors.textColor,
                 ),
               ),
               Container(
@@ -37,9 +32,7 @@ class WelcomeBody extends StatelessWidget {
                     text: AppText.appName,
                     fontSize: 38,
                     fontWeight: FontWeight.w500,
-                    color: isDarkTheme
-                        ? AppColors.whiteColorHexa
-                        : AppColors.textColor,
+                    color: AppColors.textColor,
                   ),
                 ),
               ),
@@ -51,7 +44,7 @@ class WelcomeBody extends StatelessWidget {
         ),
         SvgPicture.asset(
           'assets/undraw_bear_market_ania.svg',
-          height: MediaQuery.of(context).size.height * 0.2,
+          height: MediaQuery.of(context).size.height * 0.18,
           width: MediaQuery.of(context).size.width * 0.2,
         ),
         SizedBox(
@@ -61,25 +54,30 @@ class WelcomeBody extends StatelessWidget {
           children: [
             MyFlatButton(
               hasShadow: true,
-              edgeMargin: const EdgeInsets.only(left: 42, right: 42, bottom: 16),
+              edgeMargin:
+                  const EdgeInsets.only(left: 42, right: 42, bottom: 16),
               textButton: AppText.createAccTitle,
               action: () {
                 print("Why");
                 // Navigator.pushNamed(context, AppText.contentBackup);
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context) => ContentsBackup())
-                );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ContentsBackup()));
               },
             ),
             MyFlatButton(
               hasShadow: true,
-              edgeMargin: const EdgeInsets.only(left: 42, right: 42, bottom: 16),
+              edgeMargin:
+                  const EdgeInsets.only(left: 42, right: 42, bottom: 16),
               textButton: AppText.importAccTitle,
               action: () {
                 Navigator.pushNamed(context, AppText.importAccView);
               },
-            )
+            ),
+            MyText(
+              text: AppText.tocAndPp,
+              fontSize: 18,
+              bottom: 16,
+            ),
           ],
         ),
       ],

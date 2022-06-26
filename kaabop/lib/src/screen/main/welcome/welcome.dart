@@ -1,4 +1,3 @@
-import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 
 class Welcome extends StatefulWidget {
@@ -9,7 +8,6 @@ class Welcome extends StatefulWidget {
 }
 
 class WelcomeState extends State<Welcome> {
-  
   GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 
   bool status;
