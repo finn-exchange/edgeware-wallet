@@ -111,6 +111,7 @@ dependencies:
   flutter_launcher_icons: ^0.8.1
   timeline_tile:
   flutter_secure_storage_web: ^1.0.2
+  passcode_screen: ^2.0.1
 
 dev_dependencies:
   flutter_test:

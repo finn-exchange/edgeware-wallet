@@ -17,8 +17,8 @@ class HomeBody extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
 
-        // Pie Chart With List Asset
-        PortFolioCus(),
+        // // Pie Chart With List Asset
+        // PortFolioCus(),
 
         Consumer<ContractProvider>(builder: (context, value, child) {
           return value.isReady

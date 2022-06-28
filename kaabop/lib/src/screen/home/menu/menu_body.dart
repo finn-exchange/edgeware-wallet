@@ -72,8 +72,8 @@ class MenuBody extends StatelessWidget {
               final res = await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Passcode(
-                    isAppBar: true,
+                  builder: (context) => Passcode(
+                    isAppBar: true
                   )
                 )
               );

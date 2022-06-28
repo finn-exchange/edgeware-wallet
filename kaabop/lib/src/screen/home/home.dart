@@ -86,26 +86,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       if (contract.bnbNative.isContain) {
         contract.getBnbBalance();
       }
-      if (contract.bscNative.isContain) {
-        contract.getBscBalance();
-      }
-
-      if (contract.bscNativeV2.isContain) {
-        contract.getBscV2Balance();
-      }
-
-      if (contract.etherNative.isContain) {
-        contract.getEtherBalance();
-      }
-
-      if (contract.kgoNative.isContain) {
-        contract.getKgoBalance();
-      }
-
-      if (api.btc.isContain) {
-        api.getBtcBalance(api.btcAdd);
-      }
-
       if (contract.token.isNotEmpty) {
         contract.fetchNonBalance();
         contract.fetchEtherNonBalance();
@@ -152,14 +132,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           elevation: 0,
           backgroundColor:
               hexaCodeToColor(AppColors.secondary).withOpacity(1.0),
-          onPressed: () async {
-            await TrxOptionMethod.scanQR(
-              context,
-              _homeM.portfolioList,
+          onPressed:
+              () async {
+            await MyBottomSheet().trxOptions(
+              context: context,
+              portfolioList: _homeM.portfolioList,
             );
           },
           child: SvgPicture.asset(
-            'assets/icons/qr_code.svg',
+            'assets/icons/telegram.svg',
             width: 30,
             height: 30,
             color: Colors.white,

@@ -1,6 +1,6 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 const fontSizePort = 17.0;
 const fontColorPort = Colors.white;
@@ -109,7 +109,9 @@ Widget homeAppBar(BuildContext context) {
   final isDarkTheme = Provider.of<ThemeProvider>(context).isDark;
   return Container(
     height: 70,
-    color: isDarkTheme ? hexaCodeToColor(AppColors.darkCard) : hexaCodeToColor(AppColors.whiteHexaColor),
+    color: isDarkTheme
+        ? hexaCodeToColor(AppColors.darkCard)
+        : hexaCodeToColor(AppColors.whiteHexaColor),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -314,14 +316,16 @@ class AddAssetRowButton extends StatelessWidget {
 // }
 
 // Portfolow Row Decoration
-Widget rowDecorationStyle({Widget child, double mTop = 0, double mBottom = 16}) {
+Widget rowDecorationStyle(
+    {Widget child, double mTop = 0, double mBottom = 16}) {
   return Container(
     margin: EdgeInsets.only(top: mTop, left: 16, right: 16, bottom: 16),
     padding: const EdgeInsets.fromLTRB(15, 9, 15, 9),
     height: 90,
     decoration: BoxDecoration(
       boxShadow: const [
-        BoxShadow(color: Colors.black12, blurRadius: 2.0, offset: Offset(1.0, 1.0))
+        BoxShadow(
+            color: Colors.black12, blurRadius: 2.0, offset: Offset(1.0, 1.0))
       ],
       color: hexaCodeToColor(AppColors.whiteHexaColor),
       borderRadius: BorderRadius.circular(8),
@@ -354,7 +358,9 @@ class MyBottomAppBar extends StatelessWidget {
     final isDarkTheme = Provider.of<ThemeProvider>(context).isDark;
     return BottomAppBar(
       elevation: 10,
-      color: isDarkTheme ? hexaCodeToColor(AppColors.darkCard) : hexaCodeToColor(AppColors.whiteHexaColor),
+      color: isDarkTheme
+          ? hexaCodeToColor(AppColors.darkCard)
+          : hexaCodeToColor(AppColors.whiteHexaColor),
       shape: const CircularNotchedRectangle(),
       notchMargin: 8.0,
       child: SizedBox(
@@ -363,40 +369,28 @@ class MyBottomAppBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              child: MyIconButton(
-              icon: 'telegram.svg',
-              iconSize: 36,
-              onPressed: !apiStatus
-                ? null
-                : () async {
-                  await MyBottomSheet().trxOptions(
-                    context: context,
-                    portfolioList: homeM.portfolioList,
-                  );
-                },
-            )),
-            Expanded(
-              child: MyIconButton(
+                child: MyIconButton(
               icon: 'wallet.svg',
               iconSize: 36,
               onPressed: !apiStatus
-                ? null
-                : () async {
-                  toReceiveToken();
-                },
+                  ? null
+                  : () async {
+                      toReceiveToken();
+                    },
             )),
-            Expanded(child: Container()),
             Expanded(
               child: MyIconButton(
                 icon: 'contact_list.svg',
                 iconSize: 26,
                 onPressed: !apiStatus
-                  ? null
-                  : () async {
-                    Navigator.pushNamed(context, AppText.contactBookView);
-                  },
+                    ? null
+                    : () async {
+                        Navigator.pushNamed(context, AppText.contactBookView);
+                      },
               ),
             ),
+            Expanded(child: Container()),
+            Expanded(child: Container()),
             Expanded(
               child: MyIconButton(
                 icon: 'menu.svg',
@@ -593,7 +587,7 @@ LineChartData mainData() {
         belowBarData: BarAreaData(
           show: true,
           colors:
-             _gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+              _gradientColors.map((color) => color.withOpacity(0.3)).toList(),
         ),
       ),
     ],
