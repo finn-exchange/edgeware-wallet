@@ -115,10 +115,15 @@ Widget homeAppBar(BuildContext context) {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Image.asset(
-          'assets/bitriel_home.png',
-          width: 170,
-          height: 170,
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Image.asset(
+            isDarkTheme
+                ? 'assets/edgeware_dark.png'
+                : 'assets/edgeware_light.png',
+            width: 170,
+            height: 170,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
@@ -368,27 +373,29 @@ class MyBottomAppBar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Expanded(
-                child: MyIconButton(
-              icon: 'wallet.svg',
-              iconSize: 36,
-              onPressed: !apiStatus
-                  ? null
-                  : () async {
-                      toReceiveToken();
-                    },
-            )),
-            Expanded(
-              child: MyIconButton(
-                icon: 'contact_list.svg',
-                iconSize: 26,
-                onPressed: !apiStatus
-                    ? null
-                    : () async {
-                        Navigator.pushNamed(context, AppText.contactBookView);
-                      },
-              ),
-            ),
+            // Expanded(
+            //     child: MyIconButton(
+            //   icon: 'wallet.svg',
+            //   iconSize: 36,
+            //   onPressed: !apiStatus
+            //       ? null
+            //       : () async {
+            //           toReceiveToken();
+            //         },
+            // )),
+            // Expanded(
+            //   child: MyIconButton(
+            //     icon: 'contact_list.svg',
+            //     iconSize: 26,
+            //     onPressed: !apiStatus
+            //         ? null
+            //         : () async {
+            //             Navigator.pushNamed(context, AppText.contactBookView);
+            //           },
+            //   ),
+            // ),
+            Expanded(child: Container()),
+            Expanded(child: Container()),
             Expanded(child: Container()),
             Expanded(child: Container()),
             Expanded(

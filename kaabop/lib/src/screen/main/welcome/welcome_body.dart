@@ -73,11 +73,6 @@ class WelcomeBody extends StatelessWidget {
                 Navigator.pushNamed(context, AppText.importAccView);
               },
             ),
-            MyText(
-              text: AppText.tocAndPp,
-              fontSize: 18,
-              bottom: 16,
-            ),
           ],
         ),
       ],

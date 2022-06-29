@@ -123,14 +123,14 @@ flutter_native_splash:
   color: "#F5F5F5"
   color_dark: "#090D28"
   
-  image: assets/bitriel_splash_500.png
+  image: assets/img_edgeware_primary.png
   android: true
   ios: true
  
 
 # Run command: flutter pub run flutter_launcher_icons:main 
 flutter_icons:
-  image_path: "assets/bitriel_icon.png"
+  image_path: "assets/ic_launcher.png"
   ios: true
   android: true
 
