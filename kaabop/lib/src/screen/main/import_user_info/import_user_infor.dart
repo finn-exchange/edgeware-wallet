@@ -145,7 +145,6 @@ class ImportUserInfoState extends State<ImportUserInfo> {
     Provider.of<ApiProvider>(context, listen: false).isBtcAvailable('contain');
 
     Provider.of<ApiProvider>(context, listen: false).setBtcAddr(bech32Address);
-    Provider.of<WalletProvider>(context, listen: false).addTokenSymbol('BTC');
   }
 
   Future<void> isKgoContain() async {

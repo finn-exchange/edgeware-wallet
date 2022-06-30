@@ -25,13 +25,6 @@ class PortfolioServices {
       });
     }
 
-    if (contract.kmpi.isContain) {
-      walletProvider.addAvaibleToken({
-        'symbol': contract.kmpi.symbol,
-        'balance': contract.kmpi.balance ?? '0',
-      });
-    }
-
     if (contract.atd.isContain) {
       walletProvider.addAvaibleToken({
         'symbol': contract.atd.symbol,

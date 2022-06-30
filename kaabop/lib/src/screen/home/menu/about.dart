@@ -1,9 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wallet_apps/src/components/component.dart';
-
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../index.dart';
 
 class About extends StatelessWidget {

@@ -153,17 +153,6 @@ class AppState extends State<App> {
 
   Future<void> isBtcContain() async {
     final res = await StorageServices.fetchData('bech32');
-
-    if (res != null) {
-      Provider.of<ApiProvider>(context, listen: false)
-          .getBtcBalance(res.toString());
-      Provider.of<ApiProvider>(context, listen: false)
-          .isBtcAvailable('contain');
-
-      Provider.of<ApiProvider>(context, listen: false)
-          .setBtcAddr(res.toString());
-      Provider.of<WalletProvider>(context, listen: false).addTokenSymbol('BTC');
-    }
   }
 
   clearOldBtcAddr() async {

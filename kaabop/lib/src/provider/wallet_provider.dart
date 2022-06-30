@@ -13,9 +13,6 @@ class WalletProvider with ChangeNotifier {
     'SEL',
     'DOT',
     'BNB',
-    'ETH',
-    'SEL (BEP-20)',
-    'KGO (BEP-20)'
   ];
 
   List<Color> pieColorList = const [
@@ -94,8 +91,6 @@ class WalletProvider with ChangeNotifier {
 
   void resetDatamap() {
     dataMap.update('SEL', (value) => value = 100);
-    dataMap.update('KMPI', (value) => value = 0);
-    dataMap.update('ATD', (value) => value = 0);
     notifyListeners();
   }
 

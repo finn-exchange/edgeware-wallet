@@ -705,17 +705,6 @@ class ContractProvider with ChangeNotifier {
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
       }
-    } else if (symbol == 'KGO') {
-      if (!ApiProvider().dot.isContain) {
-        Provider.of<WalletProvider>(context, listen: false)
-            .addTokenSymbol('KGO (BEP-20)');
-        Provider.of<ContractProvider>(context, listen: false).getKgoSymbol();
-        Provider.of<ContractProvider>(context, listen: false)
-            .getKgoDecimal()
-            .then((value) {
-          Provider.of<ContractProvider>(context, listen: false).getKgoBalance();
-        });
-      }
     } else {
       if (network != null) {
         if (network == 'Ethereum') {

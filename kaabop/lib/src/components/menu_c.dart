@@ -90,7 +90,7 @@ class MenuSubTitle extends StatelessWidget {
             child: MyText(
               fontSize: 16,
               text: MenuModel.listTile[index]['title'].toString(),
-              color: AppColors.secondarytext,
+              color: AppColors.secondary,
               textAlign: TextAlign.start,
               fontWeight: FontWeight.bold,
             ),

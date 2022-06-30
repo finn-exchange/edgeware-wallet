@@ -148,7 +148,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         ),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: MyBottomAppBar(
         apiStatus: true,
         homeM: _homeM,

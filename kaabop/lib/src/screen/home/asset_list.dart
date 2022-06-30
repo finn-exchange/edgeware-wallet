@@ -109,8 +109,6 @@ class AssetList extends StatelessWidget {
 
         Provider.of<ApiProvider>(context, listen: false)
             .setBtcAddr(bech32Address);
-        Provider.of<WalletProvider>(context, listen: false)
-            .addTokenSymbol('BTC');
         Navigator.pop(context);
         Navigator.pop(context);
 
