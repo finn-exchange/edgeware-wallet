@@ -27,13 +27,20 @@ class HomeBody extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                   child: Container(
                     height: MediaQuery.of(context).size.height,
-                    color: hexaCodeToColor(AppColors.darkBgd),
+                    color: isDarkTheme
+                        ? hexaCodeToColor(AppColors.darkBgd)
+                        : Colors.grey[100],
                     child: AssetList(),
                   ),
                 )
               // Loading Data Effect Shimmer
-              : MyShimmer(
-                  isDarkTheme: isDarkTheme,
+              : Container(
+                  color: isDarkTheme
+                      ? hexaCodeToColor(AppColors.darkBgd)
+                      : Colors.grey[100],
+                  child: MyShimmer(
+                    isDarkTheme: isDarkTheme,
+                  ),
                 );
         }),
       ],
