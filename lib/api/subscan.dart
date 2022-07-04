@@ -150,7 +150,7 @@ class SubScanApi {
       "row": params.row,
       "address": params.address,
     });
-    Response res = await post(url, headers: headers, body: body);
+    Response res = await post(Uri.parse(url), headers: headers, body: body);
     if (res.body != null) {
       final obj = await compute(jsonDecode, res.body);
       if (params.sendPort != null) {
@@ -179,7 +179,7 @@ class SubScanApi {
       params['call'] = para.call;
     }
     String body = jsonEncode(params);
-    Response res = await post(url, headers: headers, body: body);
+    Response res = await post(Uri.parse(url), headers: headers, body: body);
     if (res.body != null) {
       final obj = await compute(jsonDecode, res.body);
       if (para.sendPort != null) {
@@ -202,7 +202,7 @@ class SubScanApi {
       "row": para.row,
     };
     String body = jsonEncode(params);
-    Response res = await post(url, headers: headers, body: body);
+    Response res = await post(Uri.parse(url), headers: headers, body: body);
     if (res.body != null) {
       final obj = await compute(jsonDecode, res.body);
       if (para.sendPort != null) {
@@ -237,7 +237,7 @@ class SubScanApi {
     String url = '${getSnEndpoint(para.network)}/token';
     Map<String, String> headers = {"Content-type": "application/json"};
 
-    Response res = await post(url, headers: headers);
+    Response res = await post(Uri.parse(url), headers: headers);
     if (res.body != null) {
       try {
         final obj = await compute(jsonDecode, res.body);
