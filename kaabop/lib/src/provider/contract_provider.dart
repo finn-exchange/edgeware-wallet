@@ -4,6 +4,7 @@ import 'package:http/http.dart';
 import 'package:polkawallet_sdk/kabob_sdk.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:provider/provider.dart';
+import 'package:wallet_apps/src/config/asset_names.dart';
 import 'package:wallet_apps/src/models/token.m.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +56,7 @@ class ContractProvider with ChangeNotifier {
   NativeM bnbNative = NativeM(
     id: 'binance smart chain',
     logo: 'assets/bnb.png',
-    symbol: 'BNB',
+    symbol: bnbEvm,
     org: 'Smart Chain',
     isContain: true,
   );

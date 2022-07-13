@@ -10,6 +10,8 @@ import 'package:wallet_apps/src/models/token.m.dart';
 import 'package:http/http.dart' as http;
 import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 
+import '../config/asset_names.dart';
+
 class ApiProvider with ChangeNotifier {
   
   static WalletSDK sdk = WalletSDK();
@@ -58,12 +60,12 @@ class ApiProvider with ChangeNotifier {
   NativeM nativeM = NativeM(
     id: 'selendra',
     logo: 'assets/SelendraCircle-White.png',
-    symbol: 'SEL',
+    symbol: selKbg,
     org: 'Testnet',
   );
   NativeM dot = NativeM(
     id: 'polkadot',
-    symbol: 'DOT',
+    symbol: dotEdg,
     logo: 'assets/icons/polkadot.png',
     isContain: false,
   );

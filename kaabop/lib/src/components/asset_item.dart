@@ -111,6 +111,7 @@ class _AssetItemState extends State<AssetItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyText(
+                    textAlign: TextAlign.start,
                     text: widget.tokenSymbol,
                     fontWeight: FontWeight.bold,
                     color: isDarkTheme
