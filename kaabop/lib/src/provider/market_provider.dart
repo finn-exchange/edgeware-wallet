@@ -9,9 +9,10 @@ class MarketProvider with ChangeNotifier {
   List<String> id = [
     'kiwigo',
     'ethereum',
-    'binancecoin',
-    'polkadot',
-    'bitcoin'
+    'edgeware',
+    'edgeware',
+    'bitcoin',
+    'kabocha'
   ];
 
   Market parsePhotos(String responseBody) {
@@ -107,6 +108,8 @@ class MarketProvider with ChangeNotifier {
                   .toString(),
             );
             contract.setReady();
+          } else if (i == 5) {
+            
           }
         } else {
           contract.setReady();

@@ -1,19 +1,16 @@
 import 'dart:math';
 
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/kabob_sdk.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:wallet_apps/index.dart';
 import 'package:wallet_apps/src/models/account.m.dart';
-import 'package:wallet_apps/src/models/native.m.dart';
-import 'package:wallet_apps/src/models/token.m.dart';
-import 'package:http/http.dart' as http;
-import 'package:bitcoin_flutter/bitcoin_flutter.dart';
 
 import '../config/asset_names.dart';
 
 class ApiProvider with ChangeNotifier {
-  
   static WalletSDK sdk = WalletSDK();
   static Keyring keyring = Keyring();
 
@@ -59,14 +56,14 @@ class ApiProvider with ChangeNotifier {
   AccountM accountM = AccountM();
   NativeM nativeM = NativeM(
     id: 'selendra',
-    logo: 'assets/SelendraCircle-White.png',
+    logo: 'assets/ic_kabocha.png',
     symbol: selKbg,
     org: 'Testnet',
   );
   NativeM dot = NativeM(
     id: 'polkadot',
     symbol: dotEdg,
-    logo: 'assets/icons/polkadot.png',
+    logo: 'assets/edgeware.png',
     isContain: false,
   );
   NativeM btc = NativeM(
@@ -82,7 +79,6 @@ class ApiProvider with ChangeNotifier {
 
   Future<void> initApi() async {
     try {
-
       await keyring.init();
       keyring.setSS58(42);
       await sdk.init(keyring);
@@ -142,7 +138,8 @@ class ApiProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<int> sendTxBtc(BuildContext context, String from, String to, double amount, String wif) async {
+  Future<int> sendTxBtc(BuildContext context, String from, String to,
+      double amount, String wif) async {
     int totalSatoshi = 0;
     int input = 0;
     final alice = ECPair.fromWIF(wif);
@@ -316,7 +313,7 @@ class ApiProvider with ChangeNotifier {
   }
 
   Future<String> swapToken(String privateKey, String amount) async {
-   // final res = await sdk.api.swapToken(privateKey, amount);
+    // final res = await sdk.api.swapToken(privateKey, amount);
     await sdk.api.connectBsc();
     return 'res';
   }
@@ -376,8 +373,8 @@ class ApiProvider with ChangeNotifier {
     accountM = AccountM();
     nativeM = NativeM(
       id: 'selendra',
-      logo: 'assets/SelendraCircle-White.png',
-      symbol: 'SEL',
+      logo: 'assets/ic_kabocha.png',
+      symbol: selKbg,
       org: 'Testnet',
     );
     dot = NativeM();

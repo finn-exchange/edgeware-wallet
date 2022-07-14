@@ -55,7 +55,7 @@ class ContractProvider with ChangeNotifier {
 
   NativeM bnbNative = NativeM(
     id: 'binance smart chain',
-    logo: 'assets/bnb.png',
+    logo: 'assets/edgeware_evm.png',
     symbol: bnbEvm,
     org: 'Smart Chain',
     isContain: true,
