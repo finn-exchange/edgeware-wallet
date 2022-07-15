@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong/latlong.dart';

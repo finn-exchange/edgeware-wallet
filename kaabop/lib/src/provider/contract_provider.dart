@@ -22,7 +22,7 @@ class ContractProvider with ChangeNotifier {
   Kmpi kmpi = Kmpi();
   bool isReady = false;
   NativeM bscNative = NativeM(
-    id: 'selendra',
+    id: 'kabocha',
     logo: 'assets/ic_kabocha.png',
     symbol: shortSelKbg,
     org: 'BEP-20',
@@ -53,7 +53,7 @@ class ContractProvider with ChangeNotifier {
   );
 
   NativeM bnbNative = NativeM(
-    id: 'binance smart chain',
+    id: 'edgeware evm',
     logo: 'assets/edgeware_evm.png',
     symbol: shortBnbEvm,
     org: 'Smart Chain',

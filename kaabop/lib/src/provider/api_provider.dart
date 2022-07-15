@@ -24,13 +24,13 @@ class ApiProvider with ChangeNotifier {
   ContractProvider contractProvider;
   AccountM accountM = AccountM();
   NativeM nativeM = NativeM(
-    id: 'selendra',
+    id: 'kabocha',
     logo: 'assets/ic_kabocha.png',
     symbol: shortSelKbg,
     org: 'Testnet',
   );
   NativeM dot = NativeM(
-    id: 'polkadot',
+    id: 'edgeware',
     symbol: shortDotEdg,
     logo: 'assets/edgeware.png',
     isContain: false,
