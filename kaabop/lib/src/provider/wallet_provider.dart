@@ -10,8 +10,8 @@ class WalletProvider with ChangeNotifier {
 
   List<String> listSymbol = [
     shortSelKbg,
-    'EDG',
-    'EVM',
+    shortDotEdg,
+    shortBnbEvm,
   ];
 
   List<Color> pieColorList = const [

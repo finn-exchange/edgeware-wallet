@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
+import 'package:wallet_apps/src/config/asset_names.dart';
 
 class ReceiveWallet extends StatefulWidget {
   @override
@@ -41,13 +42,14 @@ class ReceiveWalletState extends State<ReceiveWallet> {
   }
 
   void changedEthAdd(String value) {
-    if (value != 'KAB' && value != 'EDG' && value != 'EVM') {
+    if (value == shortBnbEvm) {
       setState(() {
         wallet = Provider.of<ContractProvider>(context, listen: false).ethAdd;
       });
     } else {
-      wallet =
-          Provider.of<ApiProvider>(context, listen: false).accountM.address;
+      setState(() {
+        wallet = Provider.of<ApiProvider>(context).accountM.address;
+      });
     }
   }
 

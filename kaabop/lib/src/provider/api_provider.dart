@@ -26,12 +26,12 @@ class ApiProvider with ChangeNotifier {
   NativeM nativeM = NativeM(
     id: 'selendra',
     logo: 'assets/ic_kabocha.png',
-    symbol: selKbg,
+    symbol: shortSelKbg,
     org: 'Testnet',
   );
   NativeM dot = NativeM(
     id: 'polkadot',
-    symbol: dotEdg,
+    symbol: shortDotEdg,
     logo: 'assets/edgeware.png',
     isContain: false,
   );
@@ -343,7 +343,7 @@ class ApiProvider with ChangeNotifier {
     nativeM = NativeM(
       id: 'selendra',
       logo: 'assets/ic_kabocha.png',
-      symbol: selKbg,
+      symbol: shortSelKbg,
       org: 'Testnet',
     );
     dot = NativeM();
