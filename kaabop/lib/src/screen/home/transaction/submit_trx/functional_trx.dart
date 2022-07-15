@@ -5,6 +5,8 @@ import 'package:polkawallet_sdk/api/types/txInfoData.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 
+import '../../../../config/asset_names.dart';
+
 class TrxFunctional {
 
   ApiProvider api;
@@ -309,7 +311,7 @@ class TrxFunctional {
           await saveTxHistory(
             TxHistory(
               date: DateFormat.yMEd().add_jms().format(DateTime.now()).toString(),
-              symbol: 'SEL',
+              symbol: shortSelKbg,
               destination: target,
               sender: ApiProvider.keyring.current.address,
               org: 'SELENDRA',

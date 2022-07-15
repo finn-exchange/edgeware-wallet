@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import '../../../../index.dart';
+import '../../../config/asset_names.dart';
 
 class AssetInfoC {
   bool transferFrom = false;
@@ -62,7 +63,7 @@ class AssetInfoC {
                   String wallet = '';
                   if (symbol == 'BTC') {
                     wallet = api;
-                  } else if (symbol == 'BNB' || org == 'BEP-20') {
+                  } else if (symbol == shortBnbEvm || org == 'BEP-20') {
                     wallet = value.ethAdd;
                   } else {
                     wallet = ApiProvider.keyring.current.address;

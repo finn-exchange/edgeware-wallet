@@ -24,8 +24,8 @@ class ContractProvider with ChangeNotifier {
   bool isReady = false;
   NativeM bscNative = NativeM(
     id: 'selendra',
-    logo: 'assets/SelendraCircle-Blue.png',
-    symbol: 'SEL',
+    logo: 'assets/ic_kabocha.png',
+    symbol: shortSelKbg,
     org: 'BEP-20',
     isContain: true,
   );
@@ -664,11 +664,11 @@ class ContractProvider with ChangeNotifier {
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
       }
-    } else if (symbol == 'SEL') {
+    } else if (symbol == shortSelKbg) {
       if (!bscNative.isContain) {
         bscNative.isContain = true;
 
-        await StorageServices.saveBool('SEL', true);
+        await StorageServices.saveBool(shortSelKbg, true);
 
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol("$symbol (BEP-20)");
@@ -677,11 +677,11 @@ class ContractProvider with ChangeNotifier {
         await getBscDecimal();
         await getBscBalance();
       }
-    } else if (symbol == 'BNB') {
+    } else if (symbol == shortBnbEvm) {
       if (!bnbNative.isContain) {
         bnbNative.isContain = true;
 
-        await StorageServices.saveBool('BNB', true);
+        await StorageServices.saveBool(shortBnbEvm, true);
 
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
@@ -697,9 +697,9 @@ class ContractProvider with ChangeNotifier {
               .addTokenSymbol(symbol);
         });
       }
-    } else if (symbol == 'DOT') {
+    } else if (symbol == shortDotEdg) {
       if (!ApiProvider().dot.isContain) {
-        await StorageServices.saveBool('DOT', true);
+        await StorageServices.saveBool(shortDotEdg, true);
 
         ApiProvider().connectPolNon();
         //Provider.of<ApiProvider>(context, listen: false).isDotContain();
@@ -813,14 +813,14 @@ class ContractProvider with ChangeNotifier {
     } else if (symbol == 'ATD') {
       atd.isContain = false;
       await StorageServices.removeKey('ATD');
-    } else if (symbol == 'SEL') {
+    } else if (symbol == shortSelKbg) {
       bscNative.isContain = false;
-      await StorageServices.removeKey('SEL');
-    } else if (symbol == 'BNB') {
+      await StorageServices.removeKey(shortSelKbg);
+    } else if (symbol == shortBnbEvm) {
       bnbNative.isContain = false;
-      await StorageServices.removeKey('BNB');
-    } else if (symbol == 'DOT') {
-      await StorageServices.removeKey('DOT');
+      await StorageServices.removeKey(shortSelKbg);
+    } else if (symbol == shortDotEdg) {
+      await StorageServices.removeKey(shortDotEdg);
       Provider.of<ApiProvider>(context, listen: false).dotIsNotContain();
     } else {
       final mContractAddr = findContractAddr(symbol);
@@ -831,7 +831,7 @@ class ContractProvider with ChangeNotifier {
             ),
       );
     }
-    if (symbol == 'SEL') {
+    if (symbol == shortSelKbg) {
       Provider.of<WalletProvider>(context, listen: false)
           .removeTokenSymbol("$symbol (BEP-20)");
     } else {
@@ -894,15 +894,15 @@ class ContractProvider with ChangeNotifier {
     kmpi = Kmpi();
     bscNative = NativeM(
       id: 'selendra',
-      symbol: 'SEL',
-      logo: 'assets/SelendraCircle-Blue.png',
+      symbol: shortSelKbg,
+      logo: 'assets/ic_kabocha.png',
       org: 'BEP-20',
       isContain: true,
     );
     bnbNative = NativeM(
       id: 'binance smart chain',
       logo: 'assets/bnb.png',
-      symbol: 'BNB',
+      symbol: shortBnbEvm,
       // org: 'Smart Chain',
       isContain: true,
     );

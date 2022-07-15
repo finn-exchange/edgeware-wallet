@@ -2,8 +2,6 @@ import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 
 class ReceiveWallet extends StatefulWidget {
-  //static const route = '/recievewallet';
-
   @override
   State<StatefulWidget> createState() {
     return ReceiveWalletState();
@@ -17,7 +15,7 @@ class ReceiveWalletState extends State<ReceiveWallet> {
   final GetWalletMethod _method = GetWalletMethod();
   String name = 'username';
   String wallet = 'wallet address';
-  String initialValue = 'SEL';
+  String initialValue = 'KAB';
 
   @override
   void initState() {
@@ -43,12 +41,13 @@ class ReceiveWalletState extends State<ReceiveWallet> {
   }
 
   void changedEthAdd(String value) {
-    if (value != 'SEL' && value != 'DOT' && value != 'BNB') {
+    if (value != 'KAB' && value != 'EDG' && value != 'EVM') {
       setState(() {
         wallet = Provider.of<ContractProvider>(context, listen: false).ethAdd;
       });
     } else {
-      wallet = Provider.of<ApiProvider>(context, listen: false).accountM.address;
+      wallet =
+          Provider.of<ApiProvider>(context, listen: false).accountM.address;
     }
   }
 

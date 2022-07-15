@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 
 import '../../index.dart';
+import '../config/asset_names.dart';
 
 class WalletProvider with ChangeNotifier {
   final List<PortfolioM> _portfolioM = [];
@@ -8,7 +9,7 @@ class WalletProvider with ChangeNotifier {
   List<Map<String, String>> availableToken = [];
 
   List<String> listSymbol = [
-    'KAB',
+    shortSelKbg,
     'EDG',
     'EVM',
   ];
@@ -89,7 +90,7 @@ class WalletProvider with ChangeNotifier {
   }
 
   void resetDatamap() {
-    dataMap.update('SEL', (value) => value = 100);
+    dataMap.update(shortSelKbg, (value) => value = 100);
     notifyListeners();
   }
 

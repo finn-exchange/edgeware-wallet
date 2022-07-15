@@ -3,6 +3,8 @@ import 'package:wallet_apps/index.dart';
 import 'package:wallet_apps/src/components/reuse_dropdown.dart';
 import 'package:wallet_apps/src/screen/home/menu/add_asset/search_asset.dart';
 
+import '../../../../config/asset_names.dart';
+
 class AddAssetBody extends StatelessWidget {
   
   final ModelAsset assetM;
@@ -202,7 +204,7 @@ class AddAssetBody extends StatelessWidget {
                             Colors.black,
                             addAsset,
                           )
-                        else if (tokenSymbol == 'SEL')
+                        else if (tokenSymbol == shortSelKbg)
                           portFolioItemRow(
                             context,
                             isDarkTheme,
@@ -220,7 +222,7 @@ class AddAssetBody extends StatelessWidget {
                             Colors.black,
                             addAsset,
                           )
-                        else if (tokenSymbol != 'SEL' && tokenSymbol != '')
+                        else if (tokenSymbol != shortSelKbg && tokenSymbol != '')
                           portFolioItemRow(
                             context,
                             isDarkTheme,
