@@ -19,38 +19,7 @@ class ApiProvider with ChangeNotifier {
 
   double amount = 0.0008;
 
-  static List<TokenModel> listToken = [
-    // TokenModel(
-    //   logo: 'assets/FingerPrint1.png',
-    //   symbol: 'ATD',
-    //   org: 'KOOMPI',
-    //   color: Colors.black,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/koompi_white_logo.png',
-    //   symbol: 'KMPI',
-    //   org: 'KOOMPI',
-    //   color: Colors.transparent,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/icons/polkadot.png',
-    //   symbol: 'DOT',
-    //   org: '',
-    //   color: Colors.transparent,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/bnb-2.png',
-    //   symbol: 'BNB',
-    //   org: 'Smart Chain',
-    //   color: Colors.transparent,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/SelendraCircle-Blue.png',
-    //   symbol: 'SEL',
-    //   org: 'BEP-20',
-    //   color: Colors.transparent,
-    // ),
-  ];
+  static List<TokenModel> listToken = [];
 
   ContractProvider contractProvider;
   AccountM accountM = AccountM();
@@ -109,12 +78,12 @@ class ApiProvider with ChangeNotifier {
     final node = NetworkParams();
     node.name = AppConfig.nodeName;
     node.endpoint = AppConfig.dotMainnet;
-    node.ss58 = 0;
+    node.ss58 = 7;
 
     final node1 = NetworkParams();
     node.name = 'Polkadot(Live, hosted by PatractLabs)';
     node.endpoint = 'wss://polkadot.elara.patract.io';
-    node.ss58 = 0;
+    node.ss58 = 7;
 
     final res = await sdk.api.connectNon(keyring, [node]);
 

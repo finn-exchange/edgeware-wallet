@@ -1,18 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../index.dart';
 
 class WalletProvider with ChangeNotifier {
-
   final List<PortfolioM> _portfolioM = [];
-  
+
   List<Map<String, String>> availableToken = [];
 
   List<String> listSymbol = [
-    'SEL',
-    'DOT',
-    'BNB',
+    'KAB',
+    'EDG',
+    'EVM',
   ];
 
   List<Color> pieColorList = const [
@@ -27,6 +25,7 @@ class WalletProvider with ChangeNotifier {
   ];
 
   Map<String, double> dataMap = {};
+
   List<PortfolioM> get portfolio => _portfolioM;
 
   void setProfolio() {
@@ -95,7 +94,6 @@ class WalletProvider with ChangeNotifier {
   }
 
   Future<void> getPortfolio() async {
-    
     _portfolioM.clear();
     dataMap.clear();
 
@@ -110,10 +108,9 @@ class WalletProvider with ChangeNotifier {
         if (total == 0.0) {
           _portfolioM.add(
             PortfolioM(
-              color: pieColorList[i],
-              symbol: availableToken[i]['symbol'],
-              percentage: '0'
-            ),
+                color: pieColorList[i],
+                symbol: availableToken[i]['symbol'],
+                percentage: '0'),
           );
         } else {
           percen = temp * 100;
