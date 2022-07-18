@@ -1,5 +1,4 @@
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 
@@ -111,6 +110,7 @@ class _AssetItemState extends State<AssetItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MyText(
+                    textAlign: TextAlign.start,
                     text: widget.tokenSymbol,
                     fontWeight: FontWeight.bold,
                     color: isDarkTheme

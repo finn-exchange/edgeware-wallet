@@ -100,21 +100,21 @@ class MenuBody extends StatelessWidget {
           ),
           onTap: null,
         ),
-        const MenuSubTitle(index: 4),
+        // const MenuSubTitle(index: 4),
 
-        MyListTile(
-          index: 4,
-          subIndex: 0,
-          onTap: null,
-          trailing: Consumer<ThemeProvider>(
-            builder: (context, value, child) => Switch(
-              value: value.isDark,
-              onChanged: (value) {
-                Provider.of<ThemeProvider>(context, listen: false).changeMode();
-              },
-            ),
-          ),
-        ),
+        // MyListTile(
+        //   index: 4,
+        //   subIndex: 0,
+        //   onTap: null,
+        //   trailing: Consumer<ThemeProvider>(
+        //     builder: (context, value, child) => Switch(
+        //       value: value.isDark,
+        //       onChanged: (value) {
+        //         Provider.of<ThemeProvider>(context, listen: false).changeMode();
+        //       },
+        //     ),
+        //   ),
+        // ),
 
         const MenuSubTitle(index: 5),
 

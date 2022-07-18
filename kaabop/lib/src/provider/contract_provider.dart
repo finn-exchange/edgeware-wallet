@@ -1,13 +1,13 @@
 import 'dart:math';
-import 'package:flutter/material.dart';
+
 import 'package:http/http.dart';
 import 'package:polkawallet_sdk/kabob_sdk.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:provider/provider.dart';
-import 'package:wallet_apps/src/models/token.m.dart';
+import 'package:wallet_apps/src/config/asset_names.dart';
 import 'package:web3dart/web3dart.dart';
-import 'package:flutter/services.dart';
 import 'package:web_socket_channel/io.dart';
+
 import '../../index.dart';
 
 class ContractProvider with ChangeNotifier {
@@ -22,9 +22,9 @@ class ContractProvider with ChangeNotifier {
   Kmpi kmpi = Kmpi();
   bool isReady = false;
   NativeM bscNative = NativeM(
-    id: 'selendra',
-    logo: 'assets/SelendraCircle-Blue.png',
-    symbol: 'SEL',
+    id: 'kabocha',
+    logo: 'assets/ic_kabocha.png',
+    symbol: shortSelKbg,
     org: 'BEP-20',
     isContain: true,
   );
@@ -53,9 +53,9 @@ class ContractProvider with ChangeNotifier {
   );
 
   NativeM bnbNative = NativeM(
-    id: 'binance smart chain',
-    logo: 'assets/bnb.png',
-    symbol: 'BNB',
+    id: 'edgeware evm',
+    logo: 'assets/edgeware_evm.png',
+    symbol: shortBnbEvm,
     org: 'Smart Chain',
     isContain: true,
   );
@@ -663,11 +663,11 @@ class ContractProvider with ChangeNotifier {
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
       }
-    } else if (symbol == 'SEL') {
+    } else if (symbol == shortSelKbg) {
       if (!bscNative.isContain) {
         bscNative.isContain = true;
 
-        await StorageServices.saveBool('SEL', true);
+        await StorageServices.saveBool(shortSelKbg, true);
 
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol("$symbol (BEP-20)");
@@ -676,11 +676,11 @@ class ContractProvider with ChangeNotifier {
         await getBscDecimal();
         await getBscBalance();
       }
-    } else if (symbol == 'BNB') {
+    } else if (symbol == shortBnbEvm) {
       if (!bnbNative.isContain) {
         bnbNative.isContain = true;
 
-        await StorageServices.saveBool('BNB', true);
+        await StorageServices.saveBool(shortBnbEvm, true);
 
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
@@ -696,9 +696,9 @@ class ContractProvider with ChangeNotifier {
               .addTokenSymbol(symbol);
         });
       }
-    } else if (symbol == 'DOT') {
+    } else if (symbol == shortDotEdg) {
       if (!ApiProvider().dot.isContain) {
-        await StorageServices.saveBool('DOT', true);
+        await StorageServices.saveBool(shortDotEdg, true);
 
         ApiProvider().connectPolNon();
         //Provider.of<ApiProvider>(context, listen: false).isDotContain();
@@ -812,14 +812,14 @@ class ContractProvider with ChangeNotifier {
     } else if (symbol == 'ATD') {
       atd.isContain = false;
       await StorageServices.removeKey('ATD');
-    } else if (symbol == 'SEL') {
+    } else if (symbol == shortSelKbg) {
       bscNative.isContain = false;
-      await StorageServices.removeKey('SEL');
-    } else if (symbol == 'BNB') {
+      await StorageServices.removeKey(shortSelKbg);
+    } else if (symbol == shortBnbEvm) {
       bnbNative.isContain = false;
-      await StorageServices.removeKey('BNB');
-    } else if (symbol == 'DOT') {
-      await StorageServices.removeKey('DOT');
+      await StorageServices.removeKey(shortSelKbg);
+    } else if (symbol == shortDotEdg) {
+      await StorageServices.removeKey(shortDotEdg);
       Provider.of<ApiProvider>(context, listen: false).dotIsNotContain();
     } else {
       final mContractAddr = findContractAddr(symbol);
@@ -830,7 +830,7 @@ class ContractProvider with ChangeNotifier {
             ),
       );
     }
-    if (symbol == 'SEL') {
+    if (symbol == shortSelKbg) {
       Provider.of<WalletProvider>(context, listen: false)
           .removeTokenSymbol("$symbol (BEP-20)");
     } else {
@@ -893,15 +893,15 @@ class ContractProvider with ChangeNotifier {
     kmpi = Kmpi();
     bscNative = NativeM(
       id: 'selendra',
-      symbol: 'SEL',
-      logo: 'assets/SelendraCircle-Blue.png',
+      symbol: shortSelKbg,
+      logo: 'assets/ic_kabocha.png',
       org: 'BEP-20',
       isContain: true,
     );
     bnbNative = NativeM(
       id: 'binance smart chain',
       logo: 'assets/bnb.png',
-      symbol: 'BNB',
+      symbol: shortBnbEvm,
       // org: 'Smart Chain',
       isContain: true,
     );

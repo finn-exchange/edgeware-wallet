@@ -1,17 +1,16 @@
 import 'dart:math';
 
+import 'package:bitcoin_flutter/bitcoin_flutter.dart';
+import 'package:http/http.dart' as http;
 import 'package:polkawallet_sdk/api/types/networkParams.dart';
 import 'package:polkawallet_sdk/kabob_sdk.dart';
 import 'package:polkawallet_sdk/storage/keyring.dart';
 import 'package:wallet_apps/index.dart';
 import 'package:wallet_apps/src/models/account.m.dart';
-import 'package:wallet_apps/src/models/native.m.dart';
-import 'package:wallet_apps/src/models/token.m.dart';
-import 'package:http/http.dart' as http;
-import 'package:bitcoin_flutter/bitcoin_flutter.dart';
+
+import '../config/asset_names.dart';
 
 class ApiProvider with ChangeNotifier {
-  
   static WalletSDK sdk = WalletSDK();
   static Keyring keyring = Keyring();
 
@@ -20,51 +19,20 @@ class ApiProvider with ChangeNotifier {
 
   double amount = 0.0008;
 
-  static List<TokenModel> listToken = [
-    // TokenModel(
-    //   logo: 'assets/FingerPrint1.png',
-    //   symbol: 'ATD',
-    //   org: 'KOOMPI',
-    //   color: Colors.black,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/koompi_white_logo.png',
-    //   symbol: 'KMPI',
-    //   org: 'KOOMPI',
-    //   color: Colors.transparent,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/icons/polkadot.png',
-    //   symbol: 'DOT',
-    //   org: '',
-    //   color: Colors.transparent,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/bnb-2.png',
-    //   symbol: 'BNB',
-    //   org: 'Smart Chain',
-    //   color: Colors.transparent,
-    // ),
-    // TokenModel(
-    //   logo: 'assets/SelendraCircle-Blue.png',
-    //   symbol: 'SEL',
-    //   org: 'BEP-20',
-    //   color: Colors.transparent,
-    // ),
-  ];
+  static List<TokenModel> listToken = [];
 
   ContractProvider contractProvider;
   AccountM accountM = AccountM();
   NativeM nativeM = NativeM(
-    id: 'selendra',
-    logo: 'assets/SelendraCircle-White.png',
-    symbol: 'SEL',
+    id: 'kabocha',
+    logo: 'assets/ic_kabocha.png',
+    symbol: shortSelKbg,
     org: 'Testnet',
   );
   NativeM dot = NativeM(
-    id: 'polkadot',
-    symbol: 'DOT',
-    logo: 'assets/icons/polkadot.png',
+    id: 'edgeware',
+    symbol: shortDotEdg,
+    logo: 'assets/edgeware.png',
     isContain: false,
   );
   NativeM btc = NativeM(
@@ -80,7 +48,6 @@ class ApiProvider with ChangeNotifier {
 
   Future<void> initApi() async {
     try {
-
       await keyring.init();
       keyring.setSS58(42);
       await sdk.init(keyring);
@@ -111,12 +78,12 @@ class ApiProvider with ChangeNotifier {
     final node = NetworkParams();
     node.name = AppConfig.nodeName;
     node.endpoint = AppConfig.dotMainnet;
-    node.ss58 = 0;
+    node.ss58 = 7;
 
     final node1 = NetworkParams();
     node.name = 'Polkadot(Live, hosted by PatractLabs)';
     node.endpoint = 'wss://polkadot.elara.patract.io';
-    node.ss58 = 0;
+    node.ss58 = 7;
 
     final res = await sdk.api.connectNon(keyring, [node]);
 
@@ -140,7 +107,8 @@ class ApiProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<int> sendTxBtc(BuildContext context, String from, String to, double amount, String wif) async {
+  Future<int> sendTxBtc(BuildContext context, String from, String to,
+      double amount, String wif) async {
     int totalSatoshi = 0;
     int input = 0;
     final alice = ECPair.fromWIF(wif);
@@ -314,7 +282,7 @@ class ApiProvider with ChangeNotifier {
   }
 
   Future<String> swapToken(String privateKey, String amount) async {
-   // final res = await sdk.api.swapToken(privateKey, amount);
+    // final res = await sdk.api.swapToken(privateKey, amount);
     await sdk.api.connectBsc();
     return 'res';
   }
@@ -374,8 +342,8 @@ class ApiProvider with ChangeNotifier {
     accountM = AccountM();
     nativeM = NativeM(
       id: 'selendra',
-      logo: 'assets/SelendraCircle-White.png',
-      symbol: 'SEL',
+      logo: 'assets/ic_kabocha.png',
+      symbol: shortSelKbg,
       org: 'Testnet',
     );
     dot = NativeM();

@@ -3,6 +3,8 @@ import 'package:wallet_apps/index.dart';
 import 'package:wallet_apps/src/components/dimissible_background.dart';
 import 'package:wallet_apps/src/models/tx_history.dart';
 
+import '../../../../config/asset_names.dart';
+
 class TrxActivity extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -32,7 +34,7 @@ class TrxActivityState extends State<TrxActivity> {
         _txHistoryModel.txHistoryList = value as List;
         for (final i in value) {
           // ignore: unnecessary_parenthesis
-          if ((i['symbol'] == 'SEL')) {
+          if ((i['symbol'] == shortSelKbg)) {
             _txHistoryModel.tx.add(TxHistory(
               date: i['date'].toString(),
               symbol: i['symbol'].toString(),
@@ -62,7 +64,7 @@ class TrxActivityState extends State<TrxActivity> {
     final SharedPreferences _preferences =
         await SharedPreferences.getInstance();
 
-    if (symbol == 'SEL') {
+    if (symbol == shortSelKbg) {
       _txHistoryModel.tx.removeAt(index);
     } else {
       _txHistoryModel.txKpi.removeAt(index);
@@ -102,7 +104,7 @@ class TrxActivityState extends State<TrxActivity> {
   }
 
   final List<Tab> myTabs = <Tab>[
-    const Tab(text: 'SEL'),
+    const Tab(text: shortSelKbg),
     const Tab(text: 'KMPI'),
   ];
 

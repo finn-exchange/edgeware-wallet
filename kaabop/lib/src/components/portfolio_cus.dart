@@ -2,6 +2,7 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
 import 'package:wallet_apps/src/components/portfolio_c.dart';
+import 'package:wallet_apps/src/config/asset_names.dart';
 
 class PortFolioCus extends StatelessWidget {
   @override
@@ -30,7 +31,7 @@ class PortFolioCus extends StatelessWidget {
                     return value.dataMap.isEmpty
                         ? PieChart(
                             ringStrokeWidth: 15,
-                            dataMap: const {'SEL': 100},
+                            dataMap: const {shortSelKbg: 100},
                             chartType: ChartType.ring,
                             //colorList: value.pieColorList,
                             centerText: "0%",

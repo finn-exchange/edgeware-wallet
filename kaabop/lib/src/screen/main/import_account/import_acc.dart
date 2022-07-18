@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:wallet_apps/index.dart';
+import 'package:wallet_apps/src/config/asset_names.dart';
 
 class ImportAcc extends StatefulWidget {
 
@@ -190,7 +191,7 @@ class ImportAccState extends State<ImportAcc> {
 
   Future<void> isBscContain() async {
     Provider.of<WalletProvider>(context, listen: false)
-        .addTokenSymbol('SEL (BEP-20)');
+        .addTokenSymbol('$shortSelKbg (BEP-20)');
     Provider.of<ContractProvider>(context, listen: false).getSymbol();
     Provider.of<ContractProvider>(context, listen: false)
         .getBscDecimal()
