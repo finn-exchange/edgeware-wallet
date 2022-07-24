@@ -220,24 +220,9 @@ class AssetList extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                RouteAnimation(
-                  enterPage: AssetInfo(
-                    id: value.nativeM.id,
-                    assetLogo: value.nativeM.logo,
-                    balance: value.nativeM.balance ?? AppText.loadingPattern,
-                    tokenSymbol: value.nativeM.symbol,
-                    org: value.nativeM.org,
-                  ),
-                ),
+                RouteAnimation(),
               );
             },
-            child: AssetItem(
-              value.nativeM.logo,
-              value.nativeM.symbol,
-              value.nativeM.org,
-              value.nativeM.balance ?? AppText.loadingPattern,
-              Colors.transparent,
-            ),
           );
         }),
 

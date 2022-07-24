@@ -31,7 +31,7 @@ class PortFolioCus extends StatelessWidget {
                     return value.dataMap.isEmpty
                         ? PieChart(
                             ringStrokeWidth: 15,
-                            dataMap: const {shortSelKbg: 100},
+                            dataMap: const {shortBnbEvm: 100},
                             chartType: ChartType.ring,
                             //colorList: value.pieColorList,
                             centerText: "0%",

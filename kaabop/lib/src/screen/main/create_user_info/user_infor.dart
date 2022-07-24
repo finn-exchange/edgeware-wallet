@@ -224,9 +224,6 @@ class MyUserInfoState extends State<MyUserInfo> {
 
           Provider.of<ApiProvider>(context, listen: false).connectPolNon();
           Provider.of<ContractProvider>(context, listen: false).getBnbBalance();
-          Provider.of<ContractProvider>(context, listen: false).getBscBalance();
-          Provider.of<ContractProvider>(context, listen: false)
-              .getBscV2Balance();
 
           isKgoContain();
           await addBtcWallet();
@@ -237,14 +234,6 @@ class MyUserInfoState extends State<MyUserInfo> {
           Provider.of<ApiProvider>(context, listen: false).getChainDecimal();
           Provider.of<ApiProvider>(context, listen: false).getAddressIcon();
           Provider.of<ApiProvider>(context, listen: false).getCurrentAccount();
-          Provider.of<WalletProvider>(context, listen: false).addAvaibleToken({
-            'symbol':
-                Provider.of<ApiProvider>(context, listen: false).nativeM.symbol,
-            'balance': Provider.of<ApiProvider>(context, listen: false)
-                    .nativeM
-                    .balance ??
-                '0',
-          });
 
           // Close Loading Process
           Navigator.pop(context);
@@ -348,7 +337,6 @@ class MyUserInfoState extends State<MyUserInfo> {
     Provider.of<ContractProvider>(context, listen: false)
         .getKgoDecimal()
         .then((value) {
-      Provider.of<ContractProvider>(context, listen: false).getKgoBalance();
     });
   }
 

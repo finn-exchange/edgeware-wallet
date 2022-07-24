@@ -230,8 +230,6 @@ class _SwapState extends State<Swap> {
             if (swapStatus) {
               // setState(() {});
 
-              contract.getBscBalance();
-              contract.getBscV2Balance();
               Navigator.pop(context);
               enableAnimation(
                   'swapped ${_amountController.text} of SEL v1 to SEL v2.',
@@ -293,15 +291,6 @@ class _SwapState extends State<Swap> {
     dialogLoading(context);
 
     final contract = Provider.of<ContractProvider>(context, listen: false);
-
-    if (double.parse(_amountController.text) > double.parse(contract.bscNative.balance) || double.parse(contract.bscNative.balance) == 0) {
-      // Close Loading
-      Navigator.pop(context);
-      customDialog('Insufficient Balance', 'Your loaded balance is not enough to swap.');
-    } else {
-      Navigator.pop(context);
-      confirmDialog(_amountController.text, swap);
-    }
   }
 
   Future enableAnimation(String operationText, String btnText, Function onPressed) async {
@@ -567,9 +556,6 @@ class _SwapState extends State<Swap> {
                     children: [
                       MyText(
                         width: double.infinity,
-                        text: contract.bscNative.balance == null
-                            ? 'Available Balance:  ${AppText.loadingPattern} SEL v1'
-                            : 'Available Balance:  ${contract.bscNative.balance} SEL v1',
                         fontWeight: FontWeight.bold,
                         color: isDarkTheme
                             ? AppColors.darkSecondaryText
@@ -756,12 +742,7 @@ class _SwapState extends State<Swap> {
   void fetchMax() async {
     dialogLoading(context, content: 'Fetching Balance');
 
-    final contract = Provider.of<ContractProvider>(context, listen: false);
-
-    await contract.getBscBalance();
-
     setState(() {
-      _amountController.text = contract.bscNative.balance;
       _enableBtn = true;
     });
 

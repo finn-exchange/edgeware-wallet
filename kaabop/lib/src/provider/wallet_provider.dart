@@ -9,7 +9,6 @@ class WalletProvider with ChangeNotifier {
   List<Map<String, String>> availableToken = [];
 
   List<String> listSymbol = [
-    shortSelKbg,
     shortDotEdg,
     shortBnbEvm,
   ];
@@ -87,11 +86,6 @@ class WalletProvider with ChangeNotifier {
     }
 
     return total;
-  }
-
-  void resetDatamap() {
-    dataMap.update(shortSelKbg, (value) => value = 100);
-    notifyListeners();
   }
 
   Future<void> getPortfolio() async {

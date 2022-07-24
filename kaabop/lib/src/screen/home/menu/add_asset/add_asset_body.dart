@@ -194,45 +194,7 @@ class AddAssetBody extends StatelessWidget {
                           onChanged: onChanged,
                           onSubmit: onSubmit,
                         ),
-
-                        if (assetM.match)
-                          portFolioItemRow(
-                            context,
-                            isDarkTheme,
-                            ContractProvider().kmpi.logo,
-                            ContractProvider().kmpi.symbol,
-                            Colors.black,
-                            addAsset,
-                          )
-                        else if (tokenSymbol == shortSelKbg)
-                          portFolioItemRow(
-                            context,
-                            isDarkTheme,
-                            ContractProvider().bscNative.logo,
-                            tokenSymbol,
-                            Colors.black,
-                            addAsset,
-                          )
-                        else if (tokenSymbol == 'KGO')
-                          portFolioItemRow(
-                            context,
-                            isDarkTheme,
-                            ContractProvider().kgoNative.logo,
-                            tokenSymbol,
-                            Colors.black,
-                            addAsset,
-                          )
-                        else if (tokenSymbol != shortSelKbg && tokenSymbol != '')
-                          portFolioItemRow(
-                            context,
-                            isDarkTheme,
-                            'assets/circle.png',
-                            tokenSymbol,
-                            Colors.black,
-                            addAsset,
-                          )
-                        else
-                          Container(),
+                        Container(),
                         if (assetM.loading)
                           const CircularProgressIndicator()
                         else

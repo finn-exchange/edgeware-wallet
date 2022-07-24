@@ -41,9 +41,6 @@ class AppState extends State<App> {
           Provider.of<ApiProvider>(context, listen: false).getCurrentAccount();
           Provider.of<ApiProvider>(context, listen: false).connectPolNon();
           Provider.of<ContractProvider>(context, listen: false).getBnbBalance();
-          Provider.of<ContractProvider>(context, listen: false).getBscBalance();
-          Provider.of<ContractProvider>(context, listen: false)
-              .getBscV2Balance();
 
           isKgoContain();
 

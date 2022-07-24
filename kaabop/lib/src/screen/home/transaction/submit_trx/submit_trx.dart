@@ -11,8 +11,7 @@ class SubmitTrx extends StatefulWidget {
   final List<dynamic> _listPortfolio;
   final bool enableInput;
 
-  const SubmitTrx(
-      // ignore: avoid_positional_boolean_parameters
+  const SubmitTrx( // ignore: avoid_positional_boolean_parameters
       this._walletKey,
       // ignore: avoid_positional_boolean_parameters
       this.enableInput,
@@ -39,9 +38,9 @@ class SubmitTrxState extends State<SubmitTrx> {
 
   @override
   void initState() {
-    widget.asset != null
-        ? _scanPayM.asset = widget.asset
-        : _scanPayM.asset = shortSelKbg;
+    if (widget.asset != null) {
+      _scanPayM.asset = widget.asset;
+    }
 
     AppServices.noInternetConnection(_scanPayM.globalKey);
 
@@ -83,8 +82,8 @@ class SubmitTrxState extends State<SubmitTrx> {
   }
 
   String onChanged(String value) {
-    if (_scanPayM.nodeReceiverAddress.hasFocus) {
-    } else if (_scanPayM.nodeAmount.hasFocus) {
+    if (_scanPayM.nodeReceiverAddress.hasFocus) {} else
+    if (_scanPayM.nodeAmount.hasFocus) {
       _scanPayM.formStateKey.currentState.validate();
       if (_scanPayM.formStateKey.currentState.validate()) {
         enableButton();
@@ -205,48 +204,10 @@ class SubmitTrxState extends State<SubmitTrx> {
             else if (trxFunc.privateKey != null) {
               /* -------------Processing Transactioin----------- */
               switch (_scanPayM.asset) {
-                case shortSelKbg:
-                  await trxFunc.sendTx(_scanPayM.controlReceiverAddress.text,
-                      _scanPayM.controlAmount.text);
-                  break;
-
-                case "KMPI":
-                  await trxFunc.sendTxKmpi(
-                    _scanPayM.controlReceiverAddress.text,
-                    _scanPayM.controlAmount.text,
-                  );
-                  break;
-
                 case shortDotEdg:
                   await trxFunc.sendTxDot(_scanPayM.controlReceiverAddress.text,
                       _scanPayM.controlAmount.text);
                   break;
-
-                case "$shortSelKbg (BEP-20)":
-                  final chainDecimal = await ContractProvider()
-                      .query(AppConfig.selV1MainnetAddr, 'decimals', []);
-                  print("Chain decimal $chainDecimal");
-                  if (chainDecimal != null) {
-                    await trxFunc.sendTxAYF(
-                        AppConfig.selV1MainnetAddr,
-                        chainDecimal[0].toString(),
-                        _scanPayM.controlReceiverAddress.text,
-                        _scanPayM.controlAmount.text);
-                  }
-                  break;
-
-                case "KGO (BEP-20)":
-                  final chainDecimal = await ContractProvider()
-                      .query(AppConfig.kgoAddr, 'decimals', []);
-                  if (chainDecimal != null) {
-                    await trxFunc.sendTxAYF(
-                        AppConfig.kgoAddr,
-                        chainDecimal[0].toString(),
-                        _scanPayM.controlReceiverAddress.text,
-                        _scanPayM.controlAmount.text);
-                  }
-                  break;
-
                 case shortBnbEvm:
                   await trxFunc.sendTxBnb(_scanPayM.controlReceiverAddress.text,
                       _scanPayM.controlAmount.text);
@@ -266,7 +227,7 @@ class SubmitTrxState extends State<SubmitTrx> {
                 default:
                   if (_scanPayM.asset.contains('ERC-20')) {
                     final contractAddr =
-                        ContractProvider().findContractAddr(_scanPayM.asset);
+                    ContractProvider().findContractAddr(_scanPayM.asset);
                     final chainDecimal = await ContractProvider()
                         .queryEther(contractAddr, 'decimals', []);
                     await trxFunc.sendTxErc(
@@ -276,7 +237,7 @@ class SubmitTrxState extends State<SubmitTrx> {
                         _scanPayM.controlAmount.text);
                   } else {
                     final contractAddr =
-                        ContractProvider().findContractAddr(_scanPayM.asset);
+                    ContractProvider().findContractAddr(_scanPayM.asset);
                     final chainDecimal = await ContractProvider()
                         .query(contractAddr, 'decimals', []);
                     await trxFunc.sendTxAYF(
@@ -298,7 +259,9 @@ class SubmitTrxState extends State<SubmitTrx> {
 
       // Condition For RPCError
       await trxFunc.customDialog("Oops",
-          "${e.runtimeType.toString() == 'RPCError' ? 'insufficient funds for gas' : e}");
+          "${e.runtimeType.toString() == 'RPCError'
+              ? 'insufficient funds for gas'
+              : e}");
     }
   }
 
@@ -326,48 +289,48 @@ class SubmitTrxState extends State<SubmitTrx> {
       key: _scanPayM.globalKey,
       body: _loading
           ? const Center(
-              child: CircularProgressIndicator(),
-            )
+        child: CircularProgressIndicator(),
+      )
           : Stack(
-              children: <Widget>[
-                Consumer<WalletProvider>(
-                  builder: (context, value, child) {
-                    return SubmitTrxBody(
-                      enableInput: widget.enableInput,
-                      scanPayM: _scanPayM,
-                      onChanged: onChanged,
-                      onSubmit: onSubmit,
-                      clickSend: clickSend,
-                      validateField: validateField,
-                      resetAssetsDropDown: resetAssetsDropDown,
-                      list: value.listSymbol,
-                    );
-                  },
-                ),
-                if (_scanPayM.isPay == false)
-                  Container()
-                else
-                  BackdropFilter(
-                    // Fill Blur Background
-                    filter: ImageFilter.blur(
-                      sigmaX: 5.0,
-                      sigmaY: 5.0,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          child: CustomAnimation.flareAnimation(
-                            flareController,
-                            "assets/animation/check.flr",
-                            "Checkmark",
-                          ),
-                        ),
-                      ],
+        children: <Widget>[
+          Consumer<WalletProvider>(
+            builder: (context, value, child) {
+              return SubmitTrxBody(
+                enableInput: widget.enableInput,
+                scanPayM: _scanPayM,
+                onChanged: onChanged,
+                onSubmit: onSubmit,
+                clickSend: clickSend,
+                validateField: validateField,
+                resetAssetsDropDown: resetAssetsDropDown,
+                list: value.listSymbol,
+              );
+            },
+          ),
+          if (_scanPayM.isPay == false)
+            Container()
+          else
+            BackdropFilter(
+              // Fill Blur Background
+              filter: ImageFilter.blur(
+                sigmaX: 5.0,
+                sigmaY: 5.0,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: CustomAnimation.flareAnimation(
+                      flareController,
+                      "assets/animation/check.flr",
+                      "Checkmark",
                     ),
                   ),
-              ],
+                ],
+              ),
             ),
+        ],
+      ),
     );
   }
 }

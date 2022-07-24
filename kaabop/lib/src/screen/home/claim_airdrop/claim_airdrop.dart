@@ -287,7 +287,6 @@ class _ClaimAirDropState extends State<ClaimAirDrop> {
       _submitted = true;
     });
     await StorageServices.setUserID('claim', 'claim');
-    Provider.of<ContractProvider>(context, listen: false).getBscBalance();
     Provider.of<ContractProvider>(context, listen: false).getBnbBalance();
 
     Timer(const Duration(milliseconds: 2500), () {

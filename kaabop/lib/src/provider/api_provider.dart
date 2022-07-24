@@ -23,12 +23,6 @@ class ApiProvider with ChangeNotifier {
 
   ContractProvider contractProvider;
   AccountM accountM = AccountM();
-  NativeM nativeM = NativeM(
-    id: 'kabocha',
-    logo: 'assets/ic_kabocha.png',
-    symbol: shortSelKbg,
-    org: 'Testnet',
-  );
   NativeM dot = NativeM(
     id: 'edgeware',
     symbol: shortDotEdg,
@@ -49,7 +43,7 @@ class ApiProvider with ChangeNotifier {
   Future<void> initApi() async {
     try {
       await keyring.init();
-      keyring.setSS58(42);
+      keyring.setSS58(77);
       await sdk.init(keyring);
     } catch (e) {
       // print("Error initApi $e");
@@ -289,9 +283,6 @@ class ApiProvider with ChangeNotifier {
 
   Future<void> getChainDecimal() async {
     final res = await sdk.api.getChainDecimal();
-    nativeM.chainDecimal = res[0].toString();
-
-    subscribeBalance();
     notifyListeners();
   }
 
@@ -300,17 +291,6 @@ class ApiProvider with ChangeNotifier {
     dot.chainDecimal = res[0].toString();
     subscribeNBalance();
     notifyListeners();
-  }
-
-  Future<void> subscribeBalance() async {
-    await sdk.api.account.subscribeBalance(keyring.current.address, (res) {
-      nativeM.balance = Fmt.balance(
-        res.freeBalance.toString(),
-        int.parse(nativeM.chainDecimal),
-      );
-
-      notifyListeners();
-    });
   }
 
   Future<void> subscribeNBalance() async {
@@ -340,12 +320,6 @@ class ApiProvider with ChangeNotifier {
 
   void resetNativeObj() {
     accountM = AccountM();
-    nativeM = NativeM(
-      id: 'selendra',
-      logo: 'assets/ic_kabocha.png',
-      symbol: shortSelKbg,
-      org: 'Testnet',
-    );
     dot = NativeM();
 
     notifyListeners();

@@ -1,3 +1,2 @@
 const shortBnbEvm = "EVM";
-const shortDotEdg = "EDG";
-const shortSelKbg = "KAB";
+const shortDotEdg = "DFINN";

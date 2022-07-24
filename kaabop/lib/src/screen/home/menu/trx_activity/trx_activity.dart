@@ -30,31 +30,6 @@ class TrxActivityState extends State<TrxActivity> {
 
   Future<List<TxHistory>> readTxHistory() async {
     await StorageServices.fetchData('txhistory').then((value) {
-      if (value != null) {
-        _txHistoryModel.txHistoryList = value as List;
-        for (final i in value) {
-          // ignore: unnecessary_parenthesis
-          if ((i['symbol'] == shortSelKbg)) {
-            _txHistoryModel.tx.add(TxHistory(
-              date: i['date'].toString(),
-              symbol: i['symbol'].toString(),
-              destination: i['destination'].toString(),
-              sender: i['sender'].toString(),
-              amount: i['amount'].toString(),
-              org: i['fee'].toString(),
-            ));
-          } else {
-            _txHistoryModel.txKpi.add(TxHistory(
-              date: i['date'].toString(),
-              symbol: i['symbol'].toString(),
-              destination: i['destination'].toString(),
-              sender: i['sender'].toString(),
-              amount: i['amount'].toString(),
-              org: i['fee'].toString(),
-            ));
-          }
-        }
-      }
     });
     setState(() {});
     return _txHistoryModel.tx;
@@ -63,12 +38,6 @@ class TrxActivityState extends State<TrxActivity> {
   Future<void> _deleteHistory(int index, String symbol) async {
     final SharedPreferences _preferences =
         await SharedPreferences.getInstance();
-
-    if (symbol == shortSelKbg) {
-      _txHistoryModel.tx.removeAt(index);
-    } else {
-      _txHistoryModel.txKpi.removeAt(index);
-    }
 
     final newTxList = List.from(_txHistoryModel.tx)
       ..addAll(_txHistoryModel.txKpi);
@@ -103,17 +72,12 @@ class TrxActivityState extends State<TrxActivity> {
     });
   }
 
-  final List<Tab> myTabs = <Tab>[
-    const Tab(text: shortSelKbg),
-    const Tab(text: 'KMPI'),
-  ];
-
   void popScreen() => Navigator.pop(context);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: myTabs.length,
+      length: 0,
       child: Scaffold(
         key: _globalKey,
         appBar: AppBar(
@@ -123,7 +87,7 @@ class TrxActivityState extends State<TrxActivity> {
             color: "#FFFFFF",
           ),
           bottom: TabBar(
-            tabs: myTabs,
+            tabs: [],
           ),
         ),
         body: TabBarView(

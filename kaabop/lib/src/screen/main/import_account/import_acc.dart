@@ -155,7 +155,6 @@ class ImportAccState extends State<ImportAcc> {
       Provider.of<ContractProvider>(context, listen: false).getEtherAddr();
       Provider.of<ApiProvider>(context, listen: false).connectPolNon();
       Provider.of<ContractProvider>(context, listen: false).getBnbBalance();
-      Provider.of<ContractProvider>(context, listen: false).getBscBalance();
       Provider.of<ContractProvider>(context, listen: false).getEtherBalance();
 
       await dialogSuccess(
@@ -190,14 +189,6 @@ class ImportAccState extends State<ImportAcc> {
   }
 
   Future<void> isBscContain() async {
-    Provider.of<WalletProvider>(context, listen: false)
-        .addTokenSymbol('$shortSelKbg (BEP-20)');
-    Provider.of<ContractProvider>(context, listen: false).getSymbol();
-    Provider.of<ContractProvider>(context, listen: false)
-        .getBscDecimal()
-        .then((value) {
-      Provider.of<ContractProvider>(context, listen: false).getBscBalance();
-    });
   }
 
   Future<bool> checkPassword(String pin) async {

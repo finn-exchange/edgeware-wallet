@@ -78,8 +78,6 @@ class ImportUserInfoState extends State<ImportUserInfo> {
 
         Provider.of<ApiProvider>(context, listen: false).connectPolNon();
         Provider.of<ContractProvider>(context, listen: false).getBnbBalance();
-        Provider.of<ContractProvider>(context, listen: false).getBscBalance();
-        Provider.of<ContractProvider>(context, listen: false).getBscV2Balance();
         Provider.of<ContractProvider>(context, listen: false).getEtherBalance();
 
         isKgoContain();
@@ -151,7 +149,6 @@ class ImportUserInfoState extends State<ImportUserInfo> {
     Provider.of<ContractProvider>(context, listen: false)
         .getKgoDecimal()
         .then((value) {
-      Provider.of<ContractProvider>(context, listen: false).getKgoBalance();
     });
   }
 

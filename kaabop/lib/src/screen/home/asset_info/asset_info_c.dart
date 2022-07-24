@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+
 import '../../../../index.dart';
 import '../../../config/asset_names.dart';
 
@@ -38,13 +39,12 @@ class AssetInfoC {
     );
   }
 
-  void showRecieved(BuildContext mycontext, GetWalletMethod _method, {String symbol, org}) {
-
+  void showRecieved(BuildContext mycontext, GetWalletMethod _method,
+      {String symbol, org}) {
     showModalBottomSheet<void>(
       isScrollControlled: true,
       context: mycontext,
       builder: (BuildContext context) {
-
         final _keyQrShare = GlobalKey();
         final _globalKey = GlobalKey<ScaffoldState>();
         final isDarkTheme = Provider.of<ThemeProvider>(mycontext).isDark;
@@ -52,48 +52,47 @@ class AssetInfoC {
         return Scaffold(
           key: _globalKey,
           body: Container(
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.only(top: 27.0),
-            color: isDarkTheme ? Color(AppUtils.convertHexaColor(AppColors.darkBgd)) : Color(AppUtils.convertHexaColor("#F5F5F5")),
-            child: symbol != null
-
-            ? Consumer<ContractProvider>(
-                builder: (context, value, child) {
-                  final api = Provider.of<ApiProvider>(context, listen: false).btcAdd;
-                  String wallet = '';
-                  if (symbol == 'BTC') {
-                    wallet = api;
-                  } else if (symbol == shortBnbEvm || org == 'BEP-20') {
-                    wallet = value.ethAdd;
-                  } else {
-                    wallet = ApiProvider.keyring.current.address;
-                  }
-                  return ReceiveWalletBody(
-                    method: _method,
-                    globalKey: _globalKey,
-                    keyQrShare: _keyQrShare,
-                    name: ApiProvider.keyring.current.name,
-                    assetInfo: 'assetInfo',
-                    wallet: wallet,
-                    // wallet: symbol == 'BNB' || org == 'BEP-20'
-                    //     ? value.ethAdd
-                    //     : ApiProvider.keyring.current.address,
-                  );
-                },
-              )
-            : Consumer<ApiProvider>(
-                builder: (context, value, child) {
-                  return ReceiveWalletBody(
-                    method: _method,
-                    globalKey: _globalKey,
-                    keyQrShare: _keyQrShare,
-                    name: value.accountM.name,
-                    wallet: value.accountM.address,
-                    assetInfo: 'assetInfo',
-                  );
-                },
-              )
-            ),
+              height: MediaQuery.of(context).size.height,
+              padding: const EdgeInsets.only(top: 27.0),
+              color: isDarkTheme
+                  ? Color(AppUtils.convertHexaColor(AppColors.darkBgd))
+                  : Color(AppUtils.convertHexaColor("#F5F5F5")),
+              child: symbol != null
+                  ? Consumer<ContractProvider>(
+                      builder: (context, value, child) {
+                        final api =
+                            Provider.of<ApiProvider>(context, listen: false)
+                                .btcAdd;
+                        String wallet = '';
+                        if (symbol == 'BTC') {
+                          wallet = api;
+                        } else if (symbol == shortBnbEvm || org == 'BEP-20') {
+                          wallet = value.ethAdd;
+                        } else {
+                          wallet = ApiProvider.keyring.current.address;
+                        }
+                        return ReceiveWalletBody(
+                          method: _method,
+                          globalKey: _globalKey,
+                          keyQrShare: _keyQrShare,
+                          name: ApiProvider.keyring.current.name,
+                          assetInfo: 'assetInfo',
+                          wallet: wallet,
+                        );
+                      },
+                    )
+                  : Consumer<ApiProvider>(
+                      builder: (context, value, child) {
+                        return ReceiveWalletBody(
+                          method: _method,
+                          globalKey: _globalKey,
+                          keyQrShare: _keyQrShare,
+                          name: value.accountM.name,
+                          wallet: value.accountM.address,
+                          assetInfo: 'assetInfo',
+                        );
+                      },
+                    )),
         );
       },
     );

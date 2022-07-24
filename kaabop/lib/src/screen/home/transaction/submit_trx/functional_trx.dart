@@ -71,7 +71,7 @@ class TrxFunctional {
   }
 
   Future<String> getPrivateKey(String pin) async {
-    
+
     try {
       privateKey = await ApiProvider.keyring.store.decryptPrivateKey(encryptKey, pin);
     } catch (e) {
@@ -95,11 +95,10 @@ class TrxFunctional {
       final hash = await contract.sendTxBnb(privateKey, reciever, amount);
 
       print("has $hash");
-     
+
       if (hash != null) {
         await contract.getPending(hash).then((value) async {
           if (value == false){
-            await Provider.of<ContractProvider>(context, listen: false).getBscBalance();
             Navigator.pop(context);
             await customDialog('Transaction failed', 'Something went wrong with your transaction.');
           } else {
@@ -177,12 +176,11 @@ class TrxFunctional {
         );
 
         print("Trx hash $hash");
-       
+
         if (hash != null) {
 
           await contract.getPending(hash).then((value) async {
             if (value == false){
-              await Provider.of<ContractProvider>(context, listen: false).getBscBalance();
               Navigator.pop(context);
               await customDialog('Transaction failed', 'insufficient funds for gas');
             } else {
@@ -195,7 +193,7 @@ class TrxFunctional {
           await customDialog('Opps', 'Something went wrong!');
         }
       }
-      // Res equal NULL 
+      // Res equal NULL
       else {
         Navigator.pop(context);
       }
@@ -220,7 +218,6 @@ class TrxFunctional {
         if (hash != null) {
           await contract.getPending(hash).then((value) async {
             if (value == false){
-              await Provider.of<ContractProvider>(context, listen: false).getBscBalance();
               Navigator.pop(context);
               await customDialog('Transaction failed', 'Something went wrong with your transaction.');
             } else {
@@ -256,7 +253,7 @@ class TrxFunctional {
       );
 
       if (res['status'] != null) {
-        
+
         Provider.of<ContractProvider>(context, listen: false).fetchKmpiBalance();
 
         await saveTxHistory(
@@ -291,42 +288,18 @@ class TrxFunctional {
         ApiProvider.keyring.current.pubKey,
       );
       final txInfo = TxInfoData('balances', 'transfer', sender);
-      final chainDecimal = Provider.of<ApiProvider>(context, listen: false).nativeM.chainDecimal;
       try {
-        final hash = await ApiProvider.sdk.api.tx.signAndSend(
-          txInfo,
-          [
-            target,
-            Fmt.tokenInt(
-              amount.trim(),
-              int.parse(chainDecimal),
-            ).toString(),
-          ],
-          pin,
-          onStatusChange: (status) async {}
-        );
+        final hash =  null;
 
         if (hash != null) {
-
-          await saveTxHistory(
-            TxHistory(
-              date: DateFormat.yMEd().add_jms().format(DateTime.now()).toString(),
-              symbol: shortSelKbg,
-              destination: target,
-              sender: ApiProvider.keyring.current.address,
-              org: 'SELENDRA',
-              amount: amount.trim(),
-            )
-          );
-
           await enableAnimation();
         } else {
-          
+
           Navigator.pop(context);
           await customDialog('Opps', 'Something went wrong!');
         }
       } catch (e) {
-       
+
         Navigator.pop(context);
         await customDialog('Opps', e.message.toString());
       }
@@ -341,7 +314,7 @@ class TrxFunctional {
   Future<String> sendTxDot(String target, String amount) async {
 
     String mhash;
-    
+
     final sender = TxSenderData(
       ApiProvider.keyring.current.address,
       ApiProvider.keyring.current.pubKey,
@@ -352,7 +325,7 @@ class TrxFunctional {
       final hash = await ApiProvider.sdk.api.tx.signAndSendDot(
         txInfo, [target, pow(double.parse(amount) * 10, 12)], pin,
         onStatusChange: (status) async {
-          
+
         }
       );
 

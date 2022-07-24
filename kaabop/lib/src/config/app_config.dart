@@ -34,11 +34,11 @@ class AppConfig {
 
   /* Zeetomic api user data*/
   // Main Net API
-  static const url = "https://testnet-api.selendra.com/pub/v1";
+  static const url = "https://bangalore.dfinn.live";
 
-  //static const bscTestNet = 'https://edgeware.api.onfinality.io/public';
+  //static const bscTestNet = 'https://bangalore.dfinn.live';
 
-  static const bscMainNet = 'https://edgeware.api.onfinality.io/public';
+  static const bscMainNet = 'https://bangalore.dfinn.live';
 
   //static const bscAddr = '0xd84d89d5c9df06755b5d591794241d3fd20669ce';
 
@@ -72,19 +72,19 @@ class AppConfig {
 
   static const nodeEndpoint = 'wss://kabocha.jelliedowl.com';
 
-  static const dotTestnet = 'wss://edgeware.api.onfinality.io/public-ws';
+  static const dotTestnet = 'wss://bangalore.dfinn.live';
 
-  static const dotMainnet = 'wss://edgeware.api.onfinality.io/public-ws';
+  static const dotMainnet = 'wss://bangalore.dfinn.live';
 
-  static int ss58 = 27;
+  static int ss58 = 77;
 
   static const spreedSheetId = '1hFKqaUe1q_6A-b-_ZnEAC574d51fCi1bTWQKCluHF2E';
 
   static const nodeListPolkadot = [
     {
-      'name': 'Polkadot (Live, hosted by onfinality)',
-      'ss58': 7,
-      'endpoint': 'wss://edgeware.api.onfinality.io/public-ws',
+      'name': 'Polkadot (Live, hosted by Dfinn.live)',
+      'ss58': 77,
+      'endpoint': 'wss://bangalore.dfinn.live',
     },
   ];
 

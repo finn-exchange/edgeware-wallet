@@ -61,69 +61,13 @@ class _AssetInfoState extends State<AssetInfo> {
   }
 
   Future<List<TxHistory>> readTxHistory() async {
-    await StorageServices.fetchData('txhistory').then((value) {
-      if (value != null) {
-        for (final i in value) {
-          // ignore: unnecessary_parenthesis
-          if ((i['symbol'] == shortSelKbg)) {
-            _txHistoryModel.tx.add(TxHistory(
-              date: i['date'].toString(),
-              symbol: i['symbol'].toString(),
-              destination: i['destination'].toString(),
-              sender: i['sender'].toString(),
-              amount: i['amount'].toString(),
-              org: i['fee'].toString(),
-            ));
-          } else {
-            _txHistoryModel.txKpi.add(
-              TxHistory(
-                date: i['date'].toString(),
-                symbol: i['symbol'].toString(),
-                destination: i['destination'].toString(),
-                sender: i['sender'].toString(),
-                amount: i['amount'].toString(),
-                org: i['fee'].toString(),
-              ),
-            );
-          }
-        }
-      }
-    });
+    await StorageServices.fetchData('txhistory').then((value) {});
     setState(() {});
     return _txHistoryModel.tx;
   }
 
-  Future<void> _deleteHistory(int index, String symbol) async {
-    final SharedPreferences _preferences =
-    await SharedPreferences.getInstance();
-
-    if (symbol == shortSelKbg) {
-      _txHistoryModel.tx.removeAt(index);
-    } else {
-      _txHistoryModel.txKpi.removeAt(index);
-    }
-
-    final newTxList = List.from(_txHistoryModel.tx)
-      ..addAll(_txHistoryModel.txKpi);
-
-    await clearOldHistory().then((value) async {
-      await _preferences.setString('txhistory', jsonEncode(newTxList));
-    });
-  }
-
   Future<void> clearOldHistory() async {
     await StorageServices.removeKey('txhistory');
-  }
-
-  Future<void> _refresh() async {
-    await Future.delayed(const Duration(seconds: 3)).then((value) {
-      if (widget.tokenSymbol == "ATD") {
-        Provider.of<ContractProvider>(context, listen: false).getAStatus();
-        getCheckInList();
-        getCheckOutList();
-        sortList();
-      }
-    });
   }
 
   Future<void> getCheckInList() async {

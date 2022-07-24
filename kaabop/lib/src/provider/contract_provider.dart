@@ -21,13 +21,6 @@ class ContractProvider with ChangeNotifier {
   Atd atd = Atd();
   Kmpi kmpi = Kmpi();
   bool isReady = false;
-  NativeM bscNative = NativeM(
-    id: 'kabocha',
-    logo: 'assets/ic_kabocha.png',
-    symbol: shortSelKbg,
-    org: 'BEP-20',
-    isContain: true,
-  );
   NativeM bscNativeV2 = NativeM(
     id: 'selendra v2',
     logo: 'assets/SelendraCircle-Blue.png',
@@ -137,10 +130,7 @@ class ContractProvider with ChangeNotifier {
       final res = _web3client.addedBlocks();
 
       res.listen((event) {
-        getBscBalance();
-        getBscV2Balance();
         getBnbBalance();
-        getKgoBalance();
       });
     } catch (e) {
       print(e.message);
@@ -367,39 +357,6 @@ class ContractProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getKgoBalance() async {
-    bscNative.isContain = true;
-
-    if (ethAdd != '') {
-      final res = await query(
-          AppConfig.kgoAddr, 'balanceOf', [EthereumAddress.fromHex(ethAdd)]);
-
-      String chainDecimal =
-          kgoNative.chainDecimal != null ? kgoNative.chainDecimal : "0";
-      kgoNative.balance = Fmt.bigIntToDouble(
-        res[0] as BigInt,
-        int.parse(chainDecimal),
-      ).toString();
-    }
-
-    notifyListeners();
-  }
-
-  Future<void> getBscDecimal() async {
-    final res = await query(AppConfig.selV1MainnetAddr, 'decimals', []);
-
-    bscNative.chainDecimal = res[0].toString();
-
-    notifyListeners();
-  }
-
-  Future<void> getSymbol() async {
-    final res = await query(AppConfig.selV1MainnetAddr, 'symbol', []);
-
-    bscNative.symbol = res[0].toString();
-    notifyListeners();
-  }
-
   Future<void> extractAddress(String privateKey) async {
     initClient();
     final credentials = await _web3client.credentialsFromPrivateKey(
@@ -427,36 +384,6 @@ class ContractProvider with ChangeNotifier {
     );
 
     bnbNative.balance = balance.getValueInUnit(EtherUnit.ether).toString();
-
-    notifyListeners();
-  }
-
-  Future<void> getBscV2Balance() async {
-    bscNativeV2.isContain = true;
-    await getBscDecimal();
-    if (ethAdd != '') {
-      final res = await query(AppConfig.selv2MainnetAddr, 'balanceOf',
-          [EthereumAddress.fromHex(ethAdd)]);
-      bscNativeV2.balance = Fmt.bigIntToDouble(
-        res[0] as BigInt,
-        int.parse(bscNative.chainDecimal),
-      ).toString();
-    }
-
-    notifyListeners();
-  }
-
-  Future<void> getBscBalance() async {
-    bscNative.isContain = true;
-    await getBscDecimal();
-    if (ethAdd != '') {
-      final res = await query(AppConfig.selV1MainnetAddr, 'balanceOf',
-          [EthereumAddress.fromHex(ethAdd)]);
-      bscNative.balance = Fmt.bigIntToDouble(
-        res[0] as BigInt,
-        int.parse(bscNative.chainDecimal),
-      ).toString();
-    }
 
     notifyListeners();
   }
@@ -663,20 +590,7 @@ class ContractProvider with ChangeNotifier {
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
       }
-    } else if (symbol == shortSelKbg) {
-      if (!bscNative.isContain) {
-        bscNative.isContain = true;
-
-        await StorageServices.saveBool(shortSelKbg, true);
-
-        Provider.of<WalletProvider>(context, listen: false)
-            .addTokenSymbol("$symbol (BEP-20)");
-
-        await getSymbol();
-        await getBscDecimal();
-        await getBscBalance();
-      }
-    } else if (symbol == shortBnbEvm) {
+    }  else if (symbol == shortBnbEvm) {
       if (!bnbNative.isContain) {
         bnbNative.isContain = true;
 
@@ -685,7 +599,6 @@ class ContractProvider with ChangeNotifier {
         Provider.of<WalletProvider>(context, listen: false)
             .addTokenSymbol(symbol);
 
-        await getBscDecimal();
         getBnbBalance();
       }
     } else if (symbol == 'ATD') {
@@ -806,19 +719,7 @@ class ContractProvider with ChangeNotifier {
   }
 
   Future<void> removeToken(String symbol, BuildContext context) async {
-    if (symbol == 'KMPI') {
-      kmpi.isContain = false;
-      await StorageServices.removeKey('KMPI');
-    } else if (symbol == 'ATD') {
-      atd.isContain = false;
-      await StorageServices.removeKey('ATD');
-    } else if (symbol == shortSelKbg) {
-      bscNative.isContain = false;
-      await StorageServices.removeKey(shortSelKbg);
-    } else if (symbol == shortBnbEvm) {
-      bnbNative.isContain = false;
-      await StorageServices.removeKey(shortSelKbg);
-    } else if (symbol == shortDotEdg) {
+    if (symbol == shortDotEdg) {
       await StorageServices.removeKey(shortDotEdg);
       Provider.of<ApiProvider>(context, listen: false).dotIsNotContain();
     } else {
@@ -830,13 +731,8 @@ class ContractProvider with ChangeNotifier {
             ),
       );
     }
-    if (symbol == shortSelKbg) {
-      Provider.of<WalletProvider>(context, listen: false)
-          .removeTokenSymbol("$symbol (BEP-20)");
-    } else {
-      Provider.of<WalletProvider>(context, listen: false)
-          .removeTokenSymbol(symbol);
-    }
+    Provider.of<WalletProvider>(context, listen: false)
+        .removeTokenSymbol(symbol);
     notifyListeners();
   }
 
@@ -891,13 +787,6 @@ class ContractProvider with ChangeNotifier {
   void resetConObject() {
     atd = Atd();
     kmpi = Kmpi();
-    bscNative = NativeM(
-      id: 'selendra',
-      symbol: shortSelKbg,
-      logo: 'assets/ic_kabocha.png',
-      org: 'BEP-20',
-      isContain: true,
-    );
     bnbNative = NativeM(
       id: 'binance smart chain',
       logo: 'assets/bnb.png',

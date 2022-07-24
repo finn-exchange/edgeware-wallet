@@ -12,19 +12,6 @@ class PortfolioServices {
     walletProvider.clearPortfolio();
 
     final api = Provider.of<ApiProvider>(context, listen: false);
-
-    if (api.nativeM.balance == null) {
-      walletProvider.addAvaibleToken({
-        'symbol': api.nativeM.symbol,
-        'balance': '0',
-      });
-    } else {
-      walletProvider.addAvaibleToken({
-        'symbol': api.nativeM.symbol,
-        'balance': api.nativeM.balance.replaceAll(RegExp(','), '') ?? '0',
-      });
-    }
-
     if (contract.atd.isContain) {
       walletProvider.addAvaibleToken({
         'symbol': contract.atd.symbol,
@@ -55,11 +42,6 @@ class PortfolioServices {
         'balance': api.dot.balance.replaceAll(RegExp(','), '') ?? '0',
       });
     }
-
-    walletProvider.addAvaibleToken({
-      'symbol': '${contract.bscNative.symbol} (BEP-20)',
-      'balance': contract.bscNative.balance ?? '0',
-    });
 
     walletProvider.addAvaibleToken({
       'symbol': '${contract.kgoNative.symbol} (BEP-20)',
