@@ -24,7 +24,7 @@ class ApiProvider with ChangeNotifier {
   ContractProvider contractProvider;
   AccountM accountM = AccountM();
   NativeM dot = NativeM(
-    id: 'edgeware',
+    id: 'dfinn',
     symbol: shortDotEdg,
     logo: 'assets/edgeware.png',
     isContain: false,

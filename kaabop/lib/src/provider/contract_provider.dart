@@ -46,7 +46,7 @@ class ContractProvider with ChangeNotifier {
   );
 
   NativeM bnbNative = NativeM(
-    id: 'edgeware evm',
+    id: 'dfinn evm',
     logo: 'assets/edgeware_evm.png',
     symbol: shortBnbEvm,
     org: 'Smart Chain',

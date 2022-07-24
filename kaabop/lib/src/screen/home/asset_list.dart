@@ -213,69 +213,6 @@ class AssetList extends StatelessWidget {
             );
           },
         ),
-
-        // SEL Test Net
-        Consumer<ApiProvider>(builder: (context, value, child) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                RouteAnimation(),
-              );
-            },
-          );
-        }),
-
-        // ERC or Token After Added
-        Consumer<ContractProvider>(builder: (context, value, child) {
-          return value.token.isNotEmpty
-              ? Column(
-                  children: [
-                    for (int index = 0; index < value.token.length; index++)
-                      Dismissible(
-                        key: UniqueKey(),
-                        direction: DismissDirection.endToStart,
-                        background: DismissibleBackground(),
-                        onDismissed: (direct) {
-                          if (value.token[index].org == 'ERC-20') {
-                            value.removeEtherToken(
-                                value.token[index].symbol, context);
-                          } else {
-                            value.removeToken(
-                                value.token[index].symbol, context);
-                          }
-
-                          //setPortfolio();
-                        },
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              RouteAnimation(
-                                enterPage: AssetInfo(
-                                  assetLogo: 'assets/circle.png',
-                                  balance: value.token[index].balance ??
-                                      AppText.loadingPattern,
-                                  tokenSymbol: value.token[index].symbol ?? '',
-                                  org: value.token[index].org,
-                                ),
-                              ),
-                            );
-                          },
-                          child: AssetItem(
-                            'assets/circle.png',
-                            value.token[index].symbol ?? '',
-                            value.token[index].org ?? '',
-                            value.token[index].balance ??
-                                AppText.loadingPattern,
-                            Colors.transparent,
-                          ),
-                        ),
-                      )
-                  ],
-                )
-              : Container();
-        }),
       ],
     );
   }

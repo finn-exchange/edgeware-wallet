@@ -1,6 +1,6 @@
 // ignore: avoid_classes_with_only_static_members
 class AppText {
-  static String appName = "Edgeware Wallet";
+  static String appName = "Dfinn Wallet";
 
   static String contentConnection = "Something wrong with your connection ";
 
