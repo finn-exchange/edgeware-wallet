@@ -789,7 +789,7 @@ class ContractProvider with ChangeNotifier {
     kmpi = Kmpi();
     bnbNative = NativeM(
       id: 'binance smart chain',
-      logo: 'assets/bnb.png',
+      logo: 'assets/edgeware_evm.png',
       symbol: shortBnbEvm,
       // org: 'Smart Chain',
       isContain: true,
