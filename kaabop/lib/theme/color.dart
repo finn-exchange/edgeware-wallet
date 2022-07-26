@@ -12,7 +12,7 @@ class AppColors {
   static const String whiteHexaColor = "#FFFFFF"; //"#181C35";
   static const String textColor = "#0F1112"; //"#585D86";
   static const String textBtnColor = "#000000";
-  static const String secondary = "#FF009A"; // "#08B952";
+  static const String secondary = "#6CBB3C"; // "#08B952";
   static const String secondarytext = secondary; //"#40FF90";
   static const String selected = "#00642A";
   static const String redColor = "#FF0000";

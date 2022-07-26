@@ -16,7 +16,7 @@ class ReceiveWalletState extends State<ReceiveWallet> {
   final GetWalletMethod _method = GetWalletMethod();
   String name = 'username';
   String wallet = 'wallet address';
-  String initialValue = 'KAB';
+  String initialValue = shortBnbEvm;
 
   @override
   void initState() {

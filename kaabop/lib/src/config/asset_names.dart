@@ -1,2 +1,2 @@
-const shortBnbEvm = "EVM";
-const shortDotEdg = "DFINN";
+const shortBnbEvm = 'EVM';
+const shortDotEdg = 'DFINN';
