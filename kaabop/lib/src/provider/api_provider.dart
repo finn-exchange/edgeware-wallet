@@ -72,12 +72,12 @@ class ApiProvider with ChangeNotifier {
     final node = NetworkParams();
     node.name = AppConfig.nodeName;
     node.endpoint = AppConfig.dotMainnet;
-    node.ss58 = 7;
+    node.ss58 = 77;
 
     final node1 = NetworkParams();
     node.name = 'Polkadot(Live, hosted by PatractLabs)';
     node.endpoint = 'wss://polkadot.elara.patract.io';
-    node.ss58 = 7;
+    node.ss58 = 77;
 
     final res = await sdk.api.connectNon(keyring, [node]);
 

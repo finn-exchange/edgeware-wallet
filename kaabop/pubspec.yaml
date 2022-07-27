@@ -120,10 +120,10 @@ dev_dependencies:
 
   # run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  color: "#F5F5F5"
-  color_dark: "#090D28"
+  color: "#000000"
+  color_dark: "#000000"
   
-  image: assets/img_edgeware_primary.png
+  image: assets/dfinn.png
   android: true
   ios: true
  

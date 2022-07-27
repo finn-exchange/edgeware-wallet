@@ -23,26 +23,25 @@ class _FingerPrintState extends State<FingerPrint> {
   }
 
   Future<void> authenticate() async {
-
     bool authenticate = false;
 
     try {
-
-      authenticate = await localAuth.authenticate( localizedReason: 'Please complete the biometrics to proceed.', stickyAuth: true);
+      authenticate = await localAuth.authenticate(
+          localizedReason: 'Please complete the biometrics to proceed.',
+          stickyAuth: true);
       if (authenticate) {
         Navigator.pushReplacementNamed(context, Home.route);
       }
     } on SocketException catch (e) {
-
       await Future.delayed(const Duration(milliseconds: 300), () {});
       AppServices.openSnackBar(globalkey, e.message);
     } catch (e) {
-
       await showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)),
             title: const Align(
               child: Text('Message'),
             ),
@@ -82,7 +81,7 @@ class _FingerPrintState extends State<FingerPrint> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               MyText(
-                text: 'Bitriel Locked',
+                text: 'Dfinn Locked',
                 fontSize: 27.0,
                 fontWeight: FontWeight.bold,
                 color: isDarkTheme
